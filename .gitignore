@@ -1,0 +1,8 @@
+
+*.zip
+*.user
+*.suo
+
+_ReSharper.NPowerTray
+NPowerTray/bin
+NPowerTray/obj
