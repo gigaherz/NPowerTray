@@ -67,6 +67,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.hybridShutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +83,7 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hybridShutdownToolStripMenuItem,
             this.shutdownToolStripMenuItem,
             this.rebootToolStripMenuItem,
             this.hibernateToolStripMenuItem,
@@ -97,68 +99,68 @@
             this.toolStripMenuItem3,
             this.closeTrayIconToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 270);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 292);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shutdownToolStripMenuItem.Image = global::NPowerTray.Properties.Resources.npower16;
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // rebootToolStripMenuItem
             // 
             this.rebootToolStripMenuItem.Name = "rebootToolStripMenuItem";
-            this.rebootToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.rebootToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.rebootToolStripMenuItem.Text = "Reboot";
             this.rebootToolStripMenuItem.Click += new System.EventHandler(this.rebootToolStripMenuItem_Click);
             // 
             // hibernateToolStripMenuItem
             // 
             this.hibernateToolStripMenuItem.Name = "hibernateToolStripMenuItem";
-            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.hibernateToolStripMenuItem.Text = "Hibernate";
             this.hibernateToolStripMenuItem.Click += new System.EventHandler(this.hibernateToolStripMenuItem_Click);
             // 
             // sleepToolStripMenuItem
             // 
             this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
-            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.sleepToolStripMenuItem.Text = "Sleep";
             this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(164, 6);
             // 
             // lockToolStripMenuItem
             // 
             this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
-            this.lockToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.lockToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.lockToolStripMenuItem.Text = "Lock";
             this.lockToolStripMenuItem.Click += new System.EventHandler(this.lockToolStripMenuItem_Click);
             // 
             // logOffToolStripMenuItem
             // 
             this.logOffToolStripMenuItem.Name = "logOffToolStripMenuItem";
-            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.logOffToolStripMenuItem.Text = "Log Off";
             this.logOffToolStripMenuItem.Click += new System.EventHandler(this.logOffToolStripMenuItem_Click);
             // 
             // changeUserToolStripMenuItem
             // 
             this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
-            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.changeUserToolStripMenuItem.Text = "Change User";
             this.changeUserToolStripMenuItem.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(153, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(164, 6);
             // 
             // specialOptionsToolStripMenuItem
             // 
@@ -174,7 +176,7 @@
             this.forceHibernatedisableWakeUpEventsToolStripMenuItem,
             this.forceSleepdisableWakeUpEventsToolStripMenuItem});
             this.specialOptionsToolStripMenuItem.Name = "specialOptionsToolStripMenuItem";
-            this.specialOptionsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.specialOptionsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.specialOptionsToolStripMenuItem.Text = "Special Options";
             // 
             // forceShutdownToolStripMenuItem
@@ -248,24 +250,24 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(153, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(164, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(153, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(164, 6);
             // 
             // closeTrayIconToolStripMenuItem
             // 
             this.closeTrayIconToolStripMenuItem.Name = "closeTrayIconToolStripMenuItem";
-            this.closeTrayIconToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.closeTrayIconToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.closeTrayIconToolStripMenuItem.Text = "Close Tray Icon";
             this.closeTrayIconToolStripMenuItem.Click += new System.EventHandler(this.closeTrayIconToolStripMenuItem_Click);
             // 
@@ -389,6 +391,13 @@
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // hybridShutdownToolStripMenuItem
+            // 
+            this.hybridShutdownToolStripMenuItem.Name = "hybridShutdownToolStripMenuItem";
+            this.hybridShutdownToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.hybridShutdownToolStripMenuItem.Text = "Hybrid Shutdown";
+            this.hybridShutdownToolStripMenuItem.Click += new System.EventHandler(this.hybridShutdownToolStripMenuItem_Click);
+            // 
             // NPowerTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,6 +472,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ToolStripMenuItem hybridShutdownToolStripMenuItem;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Management;
 using System.Windows.Forms;
@@ -25,6 +26,28 @@ namespace NPowerTray
             foreach (ManagementObject manObj in mcWin32.GetInstances())
             {
                 manObj.InvokeMethod("Win32Shutdown", mboShutdownParams, null);
+            }
+        }
+
+        public static void ShutdownHybrid()
+        {
+            var osv = Environment.OSVersion;
+
+            if(osv.Platform == PlatformID.Win32NT && osv.Version >= new Version(6,2))
+            {
+                var hToken = IntPtr.Zero;
+                var tkp = new NativeMethods.TokPriv1Luid {Count = 1, Attributes = NativeMethods.SE_PRIVILEGE_ENABLED};
+
+                // Get a token for this process. 
+
+                if (!NativeMethods.OpenProcessToken(NativeMethods.GetCurrentProcess(),
+                     NativeMethods.TOKEN_ADJUST_PRIVILEGES | NativeMethods.TOKEN_QUERY, ref hToken))
+                    return;
+
+                NativeMethods.LookupPrivilegeValue(null, NativeMethods.SE_SHUTDOWN_NAME, ref tkp.Luid);
+                NativeMethods.AdjustTokenPrivileges(hToken, false, ref tkp, 0, IntPtr.Zero, IntPtr.Zero);
+                NativeMethods.InitiateShutdown(null, null, 0,
+                                               InitiateShutdownFlags.Hybrid | InitiateShutdownFlags.PowerOff, 0x80000000);
             }
         }
 

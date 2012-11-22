@@ -21,6 +21,16 @@ namespace NPowerTray
             InitializeComponent();
             boldFont = shutdownToolStripMenuItem.Font;
             normalFont = rebootToolStripMenuItem.Font;
+
+            var osv = Environment.OSVersion;
+            var isWin8 = (osv.Platform == PlatformID.Win32NT &&
+                          osv.Version >= new Version(6, 2));
+            hybridShutdownToolStripMenuItem.Visible = isWin8;
+
+            if(isWin8)
+            {
+                comboBox1.Items.Insert(0, "Hybrid Shutdown");
+            }
         }
 
         #region Dialog Events
@@ -152,6 +162,9 @@ namespace NPowerTray
         {
             switch (RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"))
             {
+                case "Hybrid Shutdown":
+                    hybridShutdownToolStripMenuItem.PerformClick();
+                    break;
                 case "Shutdown":
                     shutdownToolStripMenuItem.PerformClick();
                     break;
@@ -254,6 +267,11 @@ namespace NPowerTray
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PowerActions.FastUserSwitch();
+        }
+
+        private void hybridShutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerActions.ShutdownHybrid();
         }
         #endregion
     }
