@@ -6,17 +6,21 @@ namespace NPowerTray
 {
     static class Program
     {
+        public static readonly string AuthorEmail = "gigaherz@gmail.com";
+        public static readonly string ProgramUrl = "http://gigaherz.github.com/NPowerTray/#download";
+        public static readonly string UpdateUrl = "https://github.com/downloads/gigaherz/NPowerTray/version.txt";
+
         public static readonly RegistryKey BaseKey = Registry.CurrentUser;
-        public const string AppKey = "SOFTWARE\\NPowerTray";
+        public static readonly string AppKey = "SOFTWARE\\NPowerTray";
 
         private class CustomAppContext : ApplicationContext
         {
             public CustomAppContext(Form form)
             {
-                form.Closed += form_Closed;
+                form.Closed += OnFormClosed;
             }
 
-            void form_Closed(object sender, EventArgs e)
+            void OnFormClosed(object sender, EventArgs e)
             {
                 OnMainFormClosed(sender, e);
             }

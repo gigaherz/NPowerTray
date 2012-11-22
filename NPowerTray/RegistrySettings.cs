@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 namespace NPowerTray
 {
@@ -96,13 +95,13 @@ namespace NPowerTray
             var updatesKey = Program.BaseKey.CreateSubKey(Program.AppKey);
             if (updatesKey == null) return;
 
-            if (updatesKey.GetValueKind(key.ToString()) != valueKind)
+            var val = updatesKey.GetValue(key.ToString());
+            if (val != null && updatesKey.GetValueKind(key.ToString()) != valueKind)
                 updatesKey.DeleteValue(key.ToString());
 
             updatesKey.SetValue(key.ToString(), value, valueKind);
             updatesKey.Close();
         }
-
     }
 }
 

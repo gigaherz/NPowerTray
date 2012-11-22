@@ -1,8 +1,8 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel;
+using System.Globalization;
 using System.Management;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
 
 namespace NPowerTray
 {
@@ -10,24 +10,7 @@ namespace NPowerTray
     {
         private const string RunKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
 
-        public enum Mode
-        {
-            Force = 4,
-
-            LogOff = 0,
-            ForceLogOff = LogOff | Force,
-
-            Shutdown = 1,
-            ForceShutdown = Shutdown | Force,
-
-            Reboot = 2,
-            ForceReboot = Reboot | Force,
-
-            PowerOff = 8,
-            ForcePowerOff = PowerOff | Force,
-        }
-
-        public static void Shutdown(Mode shutdownMode)
+        public static void Shutdown(ShutdownMode shutdownMode)
         {
             var mcWin32 = new ManagementClass("Win32_OperatingSystem");
             mcWin32.Get();
@@ -49,9 +32,6 @@ namespace NPowerTray
         {
             Application.SetSuspendState(newState, force, disableWakeupEvents);
         }
-
-        [DllImport("user32.dll")]
-        public static extern void LockWorkStation();
 
         public static bool StartupState
         {
@@ -75,7 +55,7 @@ namespace NPowerTray
 
                 if (startupKey == null) return;
 
-                var old = (string)startupKey.GetValue(Application.ProductName);
+                var old = (string) startupKey.GetValue(Application.ProductName);
                 var oldSame = old != null && string.CompareOrdinal(old, Application.ExecutablePath) == 0;
 
                 if (value && oldSame)
@@ -91,6 +71,18 @@ namespace NPowerTray
 
                 startupKey.Close();
             }
+        }
+
+        public static void FastUserSwitch()
+        {
+            if (!NativeMethods.WTSDisconnectSession(NativeMethods.WtsCurrentServerHandle,
+                                      NativeMethods.WtsCurrentSession, false))
+                throw new Win32Exception();
+        }
+
+        public static void Lock()
+        {
+            NativeMethods.LockWorkStation();
         }
     }
 }

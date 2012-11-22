@@ -3,18 +3,18 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.Win32;
+using NPowerTray.Properties;
 
 namespace NPowerTray
 {
     public partial class NPowerTray : Form
     {
         private bool actuallyClosing;
-        private bool everShown = false;
+        private bool everShown;
         private Size savedSize;
 
-        Font boldFont;
-        Font normalFont;
+        readonly Font boldFont;
+        readonly Font normalFont;
 
         public NPowerTray()
         {
@@ -72,7 +72,7 @@ namespace NPowerTray
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("mailto:gigaherz@gmail.com");
+            Process.Start(string.Format("mailto:{0}", Program.AuthorEmail));
             linkLabel2.LinkVisited = true;
         }
 
@@ -90,14 +90,14 @@ namespace NPowerTray
                 return;
 
             if (MessageBox.Show(
-                string.Format("New version found: {0}.\nDo you want to visit the website to download?",
+                string.Format(Resources.NewVersionMessage,
                               string.Join(".", newVersion)),
-                "Updates",
+                Resources.UpdatesTitle,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                Process.Start("http://gigaherz.pcsx2.net/NPowerTray/#download");
+                Process.Start(Program.ProgramUrl);
             }
         }
 
@@ -110,6 +110,40 @@ namespace NPowerTray
         private void NPowerTray_Shown(object sender, EventArgs e)
         {
             everShown = true;
+        }
+        
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, (string)comboBox1.SelectedItem);
+            NPowerTray_VisibleChanged(sender, e);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            (new Disclaimer()).ShowDialog(this);
+            linkLabel1.LinkVisited = true;
+        }
+        #endregion
+
+        #region Misc Menu Items
+        private void closeTrayIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            actuallyClosing = true;
+
+            // begin FIXME: The FormClose event doesn't fire if the window has never been shown!
+            if (!everShown)
+            {
+                WindowState = FormWindowState.Minimized;
+                Show();
+            }
+            // end
+
+            Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Show();
         }
         #endregion
 
@@ -136,43 +170,20 @@ namespace NPowerTray
                 case "Log off":
                     logOffToolStripMenuItem.PerformClick();
                     break;
+                case "Change User":
+                    changeUserToolStripMenuItem.PerformClick();
+                    break;
             }
-        }
-
-        private void closeTrayIconToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            actuallyClosing = true;
-
-            // begin FIXME: The FormClose event doesn't fire if the window has never been shown!
-            if (!everShown)
-            {
-                WindowState = FormWindowState.Minimized;
-                Show();
-            }
-            // end
-
-            Close();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Show();
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            (new Disclaimer()).ShowDialog(this);
-            linkLabel1.LinkVisited = true;
         }
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.Shutdown);
+            PowerActions.Shutdown(ShutdownMode.Shutdown);
         }
 
         private void rebootToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.Reboot);
+            PowerActions.Shutdown(ShutdownMode.Reboot);
         }
 
         private void hibernateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,22 +198,22 @@ namespace NPowerTray
 
         private void logOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.LogOff);
+            PowerActions.Shutdown(ShutdownMode.LogOff);
         }
 
         private void lockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.LockWorkStation();
+            PowerActions.Lock();
         }
 
         private void forceShutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.ForceShutdown);
+            PowerActions.Shutdown(ShutdownMode.ForceShutdown);
         }
 
         private void forceRebootToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.ForceReboot);
+            PowerActions.Shutdown(ShutdownMode.ForceReboot);
         }
 
         private void forceHibernateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,7 +228,7 @@ namespace NPowerTray
 
         private void forceLogOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PowerActions.Shutdown(PowerActions.Mode.ForceLogOff);
+            PowerActions.Shutdown(ShutdownMode.ForceLogOff);
         }
 
         private void hibernatedisableWakeUpEventsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -239,12 +250,11 @@ namespace NPowerTray
         {
             PowerActions.SetPowerState(PowerState.Suspend, true, true);
         }
-        #endregion
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, (string)comboBox1.SelectedItem, RegistryValueKind.String);
-            NPowerTray_VisibleChanged(sender, e);
+            PowerActions.FastUserSwitch();
         }
+        #endregion
     }
 }

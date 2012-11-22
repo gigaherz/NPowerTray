@@ -97,7 +97,7 @@
             this.toolStripMenuItem3,
             this.closeTrayIconToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 248);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 270);
             // 
             // shutdownToolStripMenuItem
             // 
@@ -150,11 +150,10 @@
             // 
             // changeUserToolStripMenuItem
             // 
-            this.changeUserToolStripMenuItem.Enabled = false;
             this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
             this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.changeUserToolStripMenuItem.Text = "Change User";
-            this.changeUserToolStripMenuItem.Visible = false;
+            this.changeUserToolStripMenuItem.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 

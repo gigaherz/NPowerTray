@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace NPowerTray
 {
@@ -27,38 +26,41 @@ namespace NPowerTray
         {
             newVersion = null;
 
-            var wr = WebRequest.Create("http://gigaherz.pcsx2.net/NPowerTray/version.txt");
+            var wr = WebRequest.Create(Program.UpdateUrl);
 
-            var res = (HttpWebResponse)wr.GetResponse();
-            if((int)res.StatusCode >= 300)
+            var resp = wr.GetResponse();
+            var res = resp as HttpWebResponse;
+            if(res != null && (int)res.StatusCode >= 300)
             {
                 return false;
             }
 
-            var stm = res.GetResponseStream();
-            if (stm != null)
+            using (var stm = resp.GetResponseStream())
             {
-                var data = new StreamReader(stm);
-                var text = data.ReadToEnd();
-
-                var parts = text.Split(',');
-                var values = new Dictionary<string, string>();
-                foreach(var s in parts)
+                if (stm != null)
                 {
-                    var vv = s.Trim().Split(' ');
-                    values[vv[0]] = vv[1];
-                }
-                
-                var version = Application.ProductVersion.Split('.').Select(int.Parse).ToArray();
+                    var data = new StreamReader(stm);
+                    var text = data.ReadToEnd();
 
-                newVersion = values["version"].Split('.').Select(int.Parse).ToArray();
-                
-                if(CompareArraysLeft(newVersion, version) > 0)
-                {
-                    return true;
-                }
+                    var parts = text.Split(',');
+                    var values = new Dictionary<string, string>();
+                    foreach (var s in parts)
+                    {
+                        var vv = s.Trim().Split(' ');
+                        values[vv[0]] = vv[1];
+                    }
 
-                LastCheckUtc = DateTime.UtcNow.Date;
+                    var version = Application.ProductVersion.Split('.').Select(int.Parse).ToArray();
+
+                    newVersion = values["version"].Split('.').Select(int.Parse).ToArray();
+
+                    if (CompareArraysLeft(newVersion, version) > 0)
+                    {
+                        return true;
+                    }
+
+                    LastCheckUtc = DateTime.UtcNow.Date;
+                }
             }
 
             return false;
