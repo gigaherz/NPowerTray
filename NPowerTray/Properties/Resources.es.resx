@@ -117,117 +117,104 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="npower" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\npower.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="npower16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\npower16.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="npower48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\npower48.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NewVersionMessage" xml:space="preserve">
-    <value>New version found: {0}.
-Do you want to visit the website to download?</value>
-  </data>
-  <data name="UpdatesTitle" xml:space="preserve">
-    <value>Updates</value>
-  </data>
-  <data name="TrayIconTooltip" xml:space="preserve">
-    <value>NPowerTray (Double Click to {0})</value>
-  </data>
-  <data name="ActionShutdown" xml:space="preserve">
-    <value>Shutdown</value>
-  </data>
-  <data name="ActionReboot" xml:space="preserve">
-    <value>Reboot</value>
-  </data>
-  <data name="ActionHibernate" xml:space="preserve">
-    <value>Hibernate</value>
-  </data>
-  <data name="ActionSleep" xml:space="preserve">
-    <value>Sleep</value>
-  </data>
-  <data name="ActionLock" xml:space="preserve">
-    <value>Lock</value>
-  </data>
-  <data name="ActionLogOff" xml:space="preserve">
-    <value>Log Off</value>
+  <data name="AboutBoxTitle" xml:space="preserve">
+    <value>Sobre NPowerTray...</value>
   </data>
   <data name="ActionChangeUser" xml:space="preserve">
-    <value>Change User</value>
-  </data>
-  <data name="MenuSpecialOptions" xml:space="preserve">
-    <value>Special Options</value>
-  </data>
-  <data name="ActionForceShutdown" xml:space="preserve">
-    <value>Force Shutdown</value>
-  </data>
-  <data name="ActionForceReboot" xml:space="preserve">
-    <value>Force Reboot</value>
+    <value>Cambiar de Usuario</value>
   </data>
   <data name="ActionForceHibernate" xml:space="preserve">
-    <value>Force Hibernate</value>
-  </data>
-  <data name="ActionForceSleep" xml:space="preserve">
-    <value>Force Sleep</value>
-  </data>
-  <data name="ActionForceLogOff" xml:space="preserve">
-    <value>Force Log Off</value>
-  </data>
-  <data name="ActionHibernateDisableWakeupEvents" xml:space="preserve">
-    <value>Hibernate (disable WakeUp Events)</value>
-  </data>
-  <data name="ActionSleepDisableWakeupEvents" xml:space="preserve">
-    <value>Sleep (disable WakeUp Events)</value>
+    <value>Forzar Hibernación</value>
   </data>
   <data name="ActionForceHibernateDisableWakeupEvents" xml:space="preserve">
-    <value>Force Hibernate (disable WakeUp Events)</value>
+    <value>Forzar Hibernación (deshabilitar eventos)</value>
+  </data>
+  <data name="ActionForceLogOff" xml:space="preserve">
+    <value>Forzar Cerrar Sesión</value>
+  </data>
+  <data name="ActionForceReboot" xml:space="preserve">
+    <value>Forzar Reinicio</value>
+  </data>
+  <data name="ActionForceShutdown" xml:space="preserve">
+    <value>Forzar Apagado</value>
+  </data>
+  <data name="ActionForceSleep" xml:space="preserve">
+    <value>Forzar Suspensión</value>
   </data>
   <data name="ActionForceSleepDisableWakeupEvents" xml:space="preserve">
-    <value>Force Sleep (disable WakeUp Events)</value>
+    <value>Forzar Suspensión (deshabilitar eventos)</value>
   </data>
-  <data name="ShowAbout" xml:space="preserve">
-    <value>About...</value>
+  <data name="ActionHibernate" xml:space="preserve">
+    <value>Hibernar</value>
+  </data>
+  <data name="ActionHibernateDisableWakeupEvents" xml:space="preserve">
+    <value>Hibernar (deshabilitar eventos)</value>
+  </data>
+  <data name="ActionHybridShutdown" xml:space="preserve">
+    <value>Apagado Híbrido</value>
+  </data>
+  <data name="ActionLock" xml:space="preserve">
+    <value>Bloquear</value>
+  </data>
+  <data name="ActionLogOff" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="ActionReboot" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="ActionShutdown" xml:space="preserve">
+    <value>Apagar</value>
+  </data>
+  <data name="ActionSleep" xml:space="preserve">
+    <value>Suspender</value>
+  </data>
+  <data name="ActionSleepDisableWakeupEvents" xml:space="preserve">
+    <value>Suspender (deshabilitar eventos)</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Comprobar actualizaciones</value>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Comprobar ahora</value>
   </data>
   <data name="CloseTrayIcon" xml:space="preserve">
-    <value>Close Tray Icon</value>
+    <value>Cerrar Icono</value>
+  </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contactar:</value>
   </data>
   <data name="CopyrightNotice" xml:space="preserve">
     <value>Copyright: © David Quintana</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contact:</value>
-  </data>
-  <data name="Startup" xml:space="preserve">
-    <value>Start with Windows Desktop</value>
-  </data>
-  <data name="ShowLicense" xml:space="preserve">
-    <value>License Info...</value>
-  </data>
-  <data name="CheckForUpdates" xml:space="preserve">
-    <value>Check for updates</value>
-  </data>
-  <data name="CheckNow" xml:space="preserve">
-    <value>Check NOW</value>
-  </data>
   <data name="DefaultActionChoice" xml:space="preserve">
-    <value>Default action</value>
-  </data>
-  <data name="ActionHybridShutdown" xml:space="preserve">
-    <value>Hybrid Shutdown</value>
-  </data>
-  <data name="AboutBoxTitle" xml:space="preserve">
-    <value>About NPowerTray...</value>
+    <value>Acción predeterminada</value>
   </data>
   <data name="DisclaimerTitle" xml:space="preserve">
-    <value>Disclaimer</value>
+    <value>Licencia</value>
   </data>
-  <data name="CloseWindow" xml:space="preserve">
-    <value>Close</value>
+  <data name="MenuSpecialOptions" xml:space="preserve">
+    <value>Opciones Especiales</value>
   </data>
-  <data name="Disclaimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\disclaimer.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="NewVersionMessage" xml:space="preserve">
+    <value>Nueva versión disponible: {0}.
+¿Quieres visitar la página de descarga?</value>
+  </data>
+  <data name="ShowAbout" xml:space="preserve">
+    <value>Acerca de...</value>
+  </data>
+  <data name="ShowLicense" xml:space="preserve">
+    <value>Información de Licencia...</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Iniciar con el Sistema</value>
+  </data>
+  <data name="TrayIconTooltip" xml:space="preserve">
+    <value>NPowerTray (Doble Clic para {0})</value>
+  </data>
+  <data name="UpdatesTitle" xml:space="preserve">
+    <value>Actualizaciones</value>
   </data>
 </root>

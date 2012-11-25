@@ -286,10 +286,10 @@ namespace NPowerTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
-        ///{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\qj\lang10\fs20 Copyright (c) 2012, David Quintana &lt;gigaherz@gmail.com&gt;\line All rights reserved.\par
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fnil\fcharset0 Georgia;}{\f1\fnil\fcharset2 Symbol;}}
+        ///\viewkind4\uc1\pard\sa200\sl276\slmult1\qj\lang10\fs20 Copyright (c) 2012, David Quintana &lt;gigaherz@gmail.com&gt;\line All rights reserved.\par
         ///Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\par
-        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li7 [rest of string was truncated]&quot;;.
+        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li720\sa200\sl276\slmult1\qj Redist [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Disclaimer {
             get {
@@ -383,7 +383,7 @@ namespace NPowerTray.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NPowerTray (Double Click to Shutdown).
+        ///   Looks up a localized string similar to NPowerTray (Double Click to {0}).
         /// </summary>
         internal static string TrayIconTooltip {
             get {

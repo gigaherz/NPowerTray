@@ -33,6 +33,8 @@ namespace NPowerTray
             }
         }
 
+        private ItemValue currentDefaultAction;
+
         public NPowerTray()
         {
             InitializeComponent();
@@ -45,7 +47,6 @@ namespace NPowerTray
 
             hybridShutdownToolStripMenuItem.Visible = isWin8;
 
-            notifyIcon1.Text = Resources.TrayIconTooltip;
             shutdownToolStripMenuItem.Text = Resources.ActionShutdown;
             rebootToolStripMenuItem.Text = Resources.ActionReboot;
             hibernateToolStripMenuItem.Text = Resources.ActionHibernate;
@@ -59,27 +60,27 @@ namespace NPowerTray
             forceHibernateToolStripMenuItem.Text = Resources.ActionForceHibernate;
             forceSleepToolStripMenuItem.Text = Resources.ActionForceSleep;
             forceLogOffToolStripMenuItem.Text = Resources.ActionForceLogOff;
-            hibernatedisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionHibernateDisableWakeupEvents;
-            sleepdisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionSleepDisableWakeupEvents;
-            forceHibernatedisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceHibernateDisableWakeupEvents;
-            forceSleepdisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceSleepDisableWakeupEvents;
+            hibernateDisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionHibernateDisableWakeupEvents;
+            sleepDisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionSleepDisableWakeupEvents;
+            forceHibernateDisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceHibernateDisableWakeupEvents;
+            forceSleepDisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceSleepDisableWakeupEvents;
             aboutToolStripMenuItem.Text = Resources.ShowAbout;
             closeTrayIconToolStripMenuItem.Text = Resources.CloseTrayIcon;
-            label1.Text = Resources.CopyrightNotice;
-            label2.Text = Resources.Contact;
-            checkBox1.Text = Resources.Startup;
-            linkLabel1.Text = Resources.ShowLicense;
-            linkLabel2.Text = Program.AuthorEmail;
-            checkBox2.Text = Resources.CheckForUpdates;
-            linkLabel3.Text = Resources.CheckNow;
-            label3.Text = Resources.DefaultActionChoice;
+            lblCopyright.Text = Resources.CopyrightNotice;
+            lblContact.Text = Resources.Contact;
+            cbStartup.Text = Resources.Startup;
+            lnLicense.Text = Resources.ShowLicense;
+            lnEmail.Text = Program.AuthorEmail;
+            cbCheckUpdates.Text = Resources.CheckForUpdates;
+            lnCheckNow.Text = Resources.CheckNow;
+            lbDefault.Text = Resources.DefaultActionChoice;
 
-            comboBox1.Items.Clear();
+            cbDefault.Items.Clear();
 
             if (isWin8)
-                comboBox1.Items.Add(
+                cbDefault.Items.Add(
                     new ItemValue(DefaultActions.HybridShutdown, Resources.ActionHybridShutdown));
-            comboBox1.Items.AddRange(new object[]
+            cbDefault.Items.AddRange(new object[]
                 {
                     new ItemValue(DefaultActions.Shutdown, Resources.ActionShutdown),
                     new ItemValue(DefaultActions.Reboot, Resources.ActionReboot),
@@ -96,16 +97,28 @@ namespace NPowerTray
             // ///////////////////////////////////////////////////////////////////////////////////// //
             // Sanitize settings
 
-            var def = RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown");
-            def = def.Replace(" ", "");
+            var defStr = RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown");
+            defStr = defStr.Replace(" ", "");
 
-            DefaultActions act;
-            if(!Enum.TryParse(def, out act))
+            DefaultActions def;
+            if(!Enum.TryParse(defStr, out def))
             {
-                act = DefaultActions.Shutdown;
+                def = DefaultActions.Shutdown;
             }
 
-            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, act.ToString());
+            if(defStr != def.ToString())
+                RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, def.ToString());
+
+            // ///////////////////////////////////////////////////////////////////////////////////// //
+
+            var defItem = cbDefault.Items.Cast<ItemValue>().FirstOrDefault(item => item.Action == def);
+
+            if (defItem == null)
+                return;
+
+            currentDefaultAction = defItem;
+
+            trayIcon.Text = string.Format(Resources.TrayIconTooltip, currentDefaultAction.Text);
         }
 
         #region Dialog Events
@@ -128,27 +141,27 @@ namespace NPowerTray
             if (!Visible) 
                 return;
 
-            checkBox1.Checked = PowerActions.StartupState;
-            checkBox2.Checked = Updates.CheckPeriodically;
+            cbStartup.Checked = PowerActions.StartupState;
+            cbCheckUpdates.Checked = Updates.CheckPeriodically;
 
             var def = (DefaultActions)Enum.Parse(typeof(DefaultActions), RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"));
 
             ItemValue defItem = null;
-            for (var i = 0; i < comboBox1.Items.Count; i++)
+            for (var i = 0; i < cbDefault.Items.Count; i++)
             {
-                var item = comboBox1.Items[i] as ItemValue;
+                var item = (ItemValue)cbDefault.Items[i];
                 
-                if (item == null || item.Action != def) 
+                if (item.Action != def) 
                     continue;
 
-                comboBox1.SelectedIndex = i;
+                cbDefault.SelectedIndex = i;
                 defItem = item;
             }
 
             if (defItem == null)
                 return;
 
-            foreach(var item in contextMenuStrip1.Items.OfType<ToolStripMenuItem>())
+            foreach(var item in trayMenu.Items.OfType<ToolStripMenuItem>())
             {
                 item.Font = (item.Text == defItem.Text) ? boldFont : normalFont;
             }
@@ -161,24 +174,24 @@ namespace NPowerTray
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {   
-            PowerActions.StartupState = checkBox1.Checked;
+            PowerActions.StartupState = cbStartup.Checked;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            Updates.CheckPeriodically = checkBox2.Checked;
+            Updates.CheckPeriodically = cbCheckUpdates.Checked;
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(string.Format("mailto:{0}", Program.AuthorEmail));
-            linkLabel2.LinkVisited = true;
+            lnEmail.LinkVisited = true;
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DoCheckForUpdates();
-            linkLabel3.LinkVisited = true;
+            lnCheckNow.LinkVisited = true;
         }
 
         private static void DoCheckForUpdates()
@@ -213,7 +226,14 @@ namespace NPowerTray
         
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var iv = comboBox1.SelectedItem as ItemValue;
+            var iv = cbDefault.SelectedItem as ItemValue;
+
+            currentDefaultAction = iv;
+
+            if (iv == null)
+                return;
+
+            trayIcon.Text = string.Format(Resources.TrayIconTooltip, currentDefaultAction.Text);
 
             RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, iv.Action.ToString());
             NPowerTray_VisibleChanged(sender, e);
@@ -222,7 +242,7 @@ namespace NPowerTray
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             (new Disclaimer()).ShowDialog(this);
-            linkLabel1.LinkVisited = true;
+            lnLicense.LinkVisited = true;
         }
         #endregion
 

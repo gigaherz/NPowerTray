@@ -10,7 +10,7 @@ namespace NPowerTray
         {
             InitializeComponent();
 
-            button1.Text = Resources.CloseWindow;
+            btnClose.Text = Resources.CloseWindow;
             Text = Resources.DisclaimerTitle;
         }
 
@@ -21,12 +21,12 @@ namespace NPowerTray
 
         private void Disclaimer_Load(object sender, EventArgs e)
         {
-            richTextBox1.Rtf = Resources.Disclaimer;
+            rtbLicense.Rtf = Resources.Disclaimer;
         }
 
         private void Disclaimer_Shown(object sender, EventArgs e)
         {
-            button1.Focus();
+            btnClose.Focus();
         }
     }
 }

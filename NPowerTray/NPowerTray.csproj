@@ -91,6 +91,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -103,6 +104,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Disclaimer.rtf" />
     <None Include="Resources\npower48.ico" />
     <None Include="Resources\npower.ico" />
     <None Include="Resources\npower16.ico" />
