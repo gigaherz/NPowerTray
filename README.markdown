@@ -22,6 +22,6 @@ Note
 
 This tool requires the Microsoft .NET Framework 4.0 Client Profile, included on Windows 8 by default.
 
-If you want to install the tool in a previous version of windows, you will need this.
+If you want to install the tool in a previous version of windows, you will need [this](http://www.microsoft.com/download/en/details.aspx?id=17113).
 
 A standalone installer is also available [here](http://www.microsoft.com/download/en/details.aspx?id=24872).

@@ -1,3 +1,6 @@
+New in 1.5.0.0:
+	[+] Added "Hybrid Shutdown" menu option, only available in Windows 8.
+	[+] Made the strings localizable and wrote a Spanish translation of the UI.
 New in 1.4.0.0:
 	[+] Added "Change User" menu option.
 	[*] Fixed (hopefully) registry saving.
