@@ -55,6 +55,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultActions.cs" />
     <Compile Include="Disclaimer.cs">
       <SubType>Form</SubType>
     </Compile>

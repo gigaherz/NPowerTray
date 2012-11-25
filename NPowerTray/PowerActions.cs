@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Management;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace NPowerTray
 {
@@ -36,15 +35,15 @@ namespace NPowerTray
             if(osv.Platform == PlatformID.Win32NT && osv.Version >= new Version(6,2))
             {
                 var hToken = IntPtr.Zero;
-                var tkp = new NativeMethods.TokPriv1Luid {Count = 1, Attributes = NativeMethods.SE_PRIVILEGE_ENABLED};
+                var tkp = new NativeMethods.TokPriv1Luid {Count = 1, Attributes = NativeMethods.SePrivilegeEnabled};
 
                 // Get a token for this process. 
 
                 if (!NativeMethods.OpenProcessToken(NativeMethods.GetCurrentProcess(),
-                     NativeMethods.TOKEN_ADJUST_PRIVILEGES | NativeMethods.TOKEN_QUERY, ref hToken))
+                     NativeMethods.TokenAdjustPrivileges | NativeMethods.TokenQuery, ref hToken))
                     return;
 
-                NativeMethods.LookupPrivilegeValue(null, NativeMethods.SE_SHUTDOWN_NAME, ref tkp.Luid);
+                NativeMethods.LookupPrivilegeValue(null, NativeMethods.SeShutdownName, ref tkp.Luid);
                 NativeMethods.AdjustTokenPrivileges(hToken, false, ref tkp, 0, IntPtr.Zero, IntPtr.Zero);
                 NativeMethods.InitiateShutdown(null, null, 0,
                                                InitiateShutdownFlags.Hybrid | InitiateShutdownFlags.PowerOff, 0x80000000);

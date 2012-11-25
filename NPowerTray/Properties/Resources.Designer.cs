@@ -61,6 +61,261 @@ namespace NPowerTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About NPowerTray....
+        /// </summary>
+        internal static string AboutBoxTitle {
+            get {
+                return ResourceManager.GetString("AboutBoxTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change User.
+        /// </summary>
+        internal static string ActionChangeUser {
+            get {
+                return ResourceManager.GetString("ActionChangeUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Hibernate.
+        /// </summary>
+        internal static string ActionForceHibernate {
+            get {
+                return ResourceManager.GetString("ActionForceHibernate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Hibernate (disable WakeUp Events).
+        /// </summary>
+        internal static string ActionForceHibernateDisableWakeupEvents {
+            get {
+                return ResourceManager.GetString("ActionForceHibernateDisableWakeupEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Log Off.
+        /// </summary>
+        internal static string ActionForceLogOff {
+            get {
+                return ResourceManager.GetString("ActionForceLogOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Reboot.
+        /// </summary>
+        internal static string ActionForceReboot {
+            get {
+                return ResourceManager.GetString("ActionForceReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Shutdown.
+        /// </summary>
+        internal static string ActionForceShutdown {
+            get {
+                return ResourceManager.GetString("ActionForceShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Sleep.
+        /// </summary>
+        internal static string ActionForceSleep {
+            get {
+                return ResourceManager.GetString("ActionForceSleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Sleep (disable WakeUp Events).
+        /// </summary>
+        internal static string ActionForceSleepDisableWakeupEvents {
+            get {
+                return ResourceManager.GetString("ActionForceSleepDisableWakeupEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hibernate.
+        /// </summary>
+        internal static string ActionHibernate {
+            get {
+                return ResourceManager.GetString("ActionHibernate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hibernate (disable WakeUp Events).
+        /// </summary>
+        internal static string ActionHibernateDisableWakeupEvents {
+            get {
+                return ResourceManager.GetString("ActionHibernateDisableWakeupEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hybrid Shutdown.
+        /// </summary>
+        internal static string ActionHybridShutdown {
+            get {
+                return ResourceManager.GetString("ActionHybridShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lock.
+        /// </summary>
+        internal static string ActionLock {
+            get {
+                return ResourceManager.GetString("ActionLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log Off.
+        /// </summary>
+        internal static string ActionLogOff {
+            get {
+                return ResourceManager.GetString("ActionLogOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reboot.
+        /// </summary>
+        internal static string ActionReboot {
+            get {
+                return ResourceManager.GetString("ActionReboot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shutdown.
+        /// </summary>
+        internal static string ActionShutdown {
+            get {
+                return ResourceManager.GetString("ActionShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleep.
+        /// </summary>
+        internal static string ActionSleep {
+            get {
+                return ResourceManager.GetString("ActionSleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleep (disable WakeUp Events).
+        /// </summary>
+        internal static string ActionSleepDisableWakeupEvents {
+            get {
+                return ResourceManager.GetString("ActionSleepDisableWakeupEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for updates.
+        /// </summary>
+        internal static string CheckForUpdates {
+            get {
+                return ResourceManager.GetString("CheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check NOW.
+        /// </summary>
+        internal static string CheckNow {
+            get {
+                return ResourceManager.GetString("CheckNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Tray Icon.
+        /// </summary>
+        internal static string CloseTrayIcon {
+            get {
+                return ResourceManager.GetString("CloseTrayIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string CloseWindow {
+            get {
+                return ResourceManager.GetString("CloseWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact:.
+        /// </summary>
+        internal static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright: © David Quintana.
+        /// </summary>
+        internal static string CopyrightNotice {
+            get {
+                return ResourceManager.GetString("CopyrightNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default action.
+        /// </summary>
+        internal static string DefaultActionChoice {
+            get {
+                return ResourceManager.GetString("DefaultActionChoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\deflang2057{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fnil\fcharset2 Symbol;}}
+        ///{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\qj\lang10\fs20 Copyright (c) 2012, David Quintana &lt;gigaherz@gmail.com&gt;\line All rights reserved.\par
+        ///Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\par
+        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li7 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Disclaimer {
+            get {
+                return ResourceManager.GetString("Disclaimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disclaimer.
+        /// </summary>
+        internal static string DisclaimerTitle {
+            get {
+                return ResourceManager.GetString("DisclaimerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special Options.
+        /// </summary>
+        internal static string MenuSpecialOptions {
+            get {
+                return ResourceManager.GetString("MenuSpecialOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New version found: {0}.
         ///Do you want to visit the website to download?.
         /// </summary>
@@ -97,6 +352,42 @@ namespace NPowerTray.Properties {
             get {
                 object obj = ResourceManager.GetObject("npower48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        internal static string ShowAbout {
+            get {
+                return ResourceManager.GetString("ShowAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License Info....
+        /// </summary>
+        internal static string ShowLicense {
+            get {
+                return ResourceManager.GetString("ShowLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start with Windows Desktop.
+        /// </summary>
+        internal static string Startup {
+            get {
+                return ResourceManager.GetString("Startup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPowerTray (Double Click to Shutdown).
+        /// </summary>
+        internal static string TrayIconTooltip {
+            get {
+                return ResourceManager.GetString("TrayIconTooltip", resourceCulture);
             }
         }
         

@@ -16,21 +16,96 @@ namespace NPowerTray
         readonly Font boldFont;
         readonly Font normalFont;
 
+        class ItemValue
+        {
+            public DefaultActions Action { get; private set; }
+            public string Text { get; private set; }
+
+            public ItemValue(DefaultActions action, string text)
+            {
+                Action = action;
+                Text = text;
+            }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
         public NPowerTray()
         {
             InitializeComponent();
+
             boldFont = shutdownToolStripMenuItem.Font;
             normalFont = rebootToolStripMenuItem.Font;
-
             var osv = Environment.OSVersion;
             var isWin8 = (osv.Platform == PlatformID.Win32NT &&
                           osv.Version >= new Version(6, 2));
+
             hybridShutdownToolStripMenuItem.Visible = isWin8;
 
-            if(isWin8)
+            notifyIcon1.Text = Resources.TrayIconTooltip;
+            shutdownToolStripMenuItem.Text = Resources.ActionShutdown;
+            rebootToolStripMenuItem.Text = Resources.ActionReboot;
+            hibernateToolStripMenuItem.Text = Resources.ActionHibernate;
+            sleepToolStripMenuItem.Text = Resources.ActionSleep;
+            lockToolStripMenuItem.Text = Resources.ActionLock;
+            logOffToolStripMenuItem.Text = Resources.ActionLogOff;
+            changeUserToolStripMenuItem.Text = Resources.ActionChangeUser;
+            specialOptionsToolStripMenuItem.Text = Resources.MenuSpecialOptions;
+            forceShutdownToolStripMenuItem.Text = Resources.ActionForceShutdown;
+            forceRebootToolStripMenuItem.Text = Resources.ActionForceReboot;
+            forceHibernateToolStripMenuItem.Text = Resources.ActionForceHibernate;
+            forceSleepToolStripMenuItem.Text = Resources.ActionForceSleep;
+            forceLogOffToolStripMenuItem.Text = Resources.ActionForceLogOff;
+            hibernatedisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionHibernateDisableWakeupEvents;
+            sleepdisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionSleepDisableWakeupEvents;
+            forceHibernatedisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceHibernateDisableWakeupEvents;
+            forceSleepdisableWakeUpEventsToolStripMenuItem.Text = Resources.ActionForceSleepDisableWakeupEvents;
+            aboutToolStripMenuItem.Text = Resources.ShowAbout;
+            closeTrayIconToolStripMenuItem.Text = Resources.CloseTrayIcon;
+            label1.Text = Resources.CopyrightNotice;
+            label2.Text = Resources.Contact;
+            checkBox1.Text = Resources.Startup;
+            linkLabel1.Text = Resources.ShowLicense;
+            linkLabel2.Text = Program.AuthorEmail;
+            checkBox2.Text = Resources.CheckForUpdates;
+            linkLabel3.Text = Resources.CheckNow;
+            label3.Text = Resources.DefaultActionChoice;
+
+            comboBox1.Items.Clear();
+
+            if (isWin8)
+                comboBox1.Items.Add(
+                    new ItemValue(DefaultActions.HybridShutdown, Resources.ActionHybridShutdown));
+            comboBox1.Items.AddRange(new object[]
+                {
+                    new ItemValue(DefaultActions.Shutdown, Resources.ActionShutdown),
+                    new ItemValue(DefaultActions.Reboot, Resources.ActionReboot),
+                    new ItemValue(DefaultActions.Sleep, Resources.ActionSleep),
+                    new ItemValue(DefaultActions.Hibernate, Resources.ActionHibernate),
+                    new ItemValue(DefaultActions.Lock, Resources.ActionLock),
+                    new ItemValue(DefaultActions.LogOff, Resources.ActionLogOff),
+                    new ItemValue(DefaultActions.ChangeUser, Resources.ActionChangeUser)
+                });
+            
+            hybridShutdownToolStripMenuItem.Text = Resources.ActionHybridShutdown;
+            Text = Resources.AboutBoxTitle;
+
+            // ///////////////////////////////////////////////////////////////////////////////////// //
+            // Sanitize settings
+
+            var def = RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown");
+            def = def.Replace(" ", "");
+
+            DefaultActions act;
+            if(!Enum.TryParse(def, out act))
             {
-                comboBox1.Items.Insert(0, "Hybrid Shutdown");
+                act = DefaultActions.Shutdown;
             }
+
+            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, act.ToString());
         }
 
         #region Dialog Events
@@ -56,12 +131,26 @@ namespace NPowerTray
             checkBox1.Checked = PowerActions.StartupState;
             checkBox2.Checked = Updates.CheckPeriodically;
 
-            var def = RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown");
+            var def = (DefaultActions)Enum.Parse(typeof(DefaultActions), RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"));
 
-            comboBox1.SelectedItem = def;
+            ItemValue defItem = null;
+            for (var i = 0; i < comboBox1.Items.Count; i++)
+            {
+                var item = comboBox1.Items[i] as ItemValue;
+                
+                if (item == null || item.Action != def) 
+                    continue;
+
+                comboBox1.SelectedIndex = i;
+                defItem = item;
+            }
+
+            if (defItem == null)
+                return;
+
             foreach(var item in contextMenuStrip1.Items.OfType<ToolStripMenuItem>())
             {
-                item.Font = (item.Text == def) ? boldFont : normalFont;
+                item.Font = (item.Text == defItem.Text) ? boldFont : normalFont;
             }
 
             var sz = Screen.GetWorkingArea(Location).Size;
@@ -124,7 +213,9 @@ namespace NPowerTray
         
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, (string)comboBox1.SelectedItem);
+            var iv = comboBox1.SelectedItem as ItemValue;
+
+            RegistrySettings.SetConfig(RegistrySettings.ConfigKey.DefaultAction, iv.Action.ToString());
             NPowerTray_VisibleChanged(sender, e);
         }
 
@@ -160,30 +251,32 @@ namespace NPowerTray
         #region Tray Icon and Menu
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            switch (RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"))
+            var def = (DefaultActions)Enum.Parse(typeof(DefaultActions), RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"));
+
+            switch (def)
             {
-                case "Hybrid Shutdown":
+                case DefaultActions.HybridShutdown:
                     hybridShutdownToolStripMenuItem.PerformClick();
                     break;
-                case "Shutdown":
+                case DefaultActions.Shutdown:
                     shutdownToolStripMenuItem.PerformClick();
                     break;
-                case "Reboot":
+                case DefaultActions.Reboot:
                     rebootToolStripMenuItem.PerformClick();
                     break;
-                case "Sleep":
+                case DefaultActions.Sleep:
                     sleepToolStripMenuItem.PerformClick();
                     break;
-                case "Hibernate":
+                case DefaultActions.Hibernate:
                     hibernateToolStripMenuItem.PerformClick();
                     break;
-                case "Lock":
+                case DefaultActions.Lock:
                     lockToolStripMenuItem.PerformClick();
                     break;
-                case "Log off":
+                case DefaultActions.LogOff:
                     logOffToolStripMenuItem.PerformClick();
                     break;
-                case "Change User":
+                case DefaultActions.ChangeUser:
                     changeUserToolStripMenuItem.PerformClick();
                     break;
             }
