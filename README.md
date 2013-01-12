@@ -17,6 +17,14 @@ Source Code
 
 The source code for the current version is available [here](https://github.com/gigaherz/NPowerTray/archive/master.zip), under a [3-clause BSD license](http://gigaherz.pcsx2.net/NPowerTray/License.html).
 
+Supported Languages
+-------------------
+
+*   English (default) by David Quintana.
+*   Spanish by David Quintana.
+*   Italian by Pietro Roberto Minali.
+*   German by Norbert Schmidt.
+
 Note
 ----
 

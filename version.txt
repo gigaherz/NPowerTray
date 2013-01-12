@@ -1,1 +1,1 @@
-version 1.5.0.0, released 2012/11/25
+version 1.5.1.0, released 2013/01/12
