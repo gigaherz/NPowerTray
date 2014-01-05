@@ -90,7 +90,6 @@
             this.lbDefault = new System.Windows.Forms.Label();
             this.cbDefault = new System.Windows.Forms.ComboBox();
             this.fastTimer = new System.Windows.Forms.Timer(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.trayMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
@@ -125,7 +124,7 @@
             this.separator4,
             this.closeTrayIconToolStripMenuItem});
             this.trayMenu.Name = "contextMenuStrip1";
-            this.trayMenu.Size = new System.Drawing.Size(174, 342);
+            this.trayMenu.Size = new System.Drawing.Size(174, 320);
             this.trayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.trayMenu_Opening);
             // 
             // hybridShutdownToolStripMenuItem
@@ -289,7 +288,6 @@
             // shutdownAfterMenuItem
             // 
             this.shutdownAfterMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
             this.minutesToolStripMenuItem,
             this.minutesToolStripMenuItem1,
             this.minutesToolStripMenuItem2,
@@ -584,13 +582,6 @@
             this.fastTimer.Interval = 1000;
             this.fastTimer.Tick += new System.EventHandler(this.fastTimer_Tick);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "10 seconds";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
-            // 
             // NPowerTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -688,7 +679,6 @@
         private System.Windows.Forms.ToolStripMenuItem convertToSleepToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem5;
         private System.Windows.Forms.Timer fastTimer;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

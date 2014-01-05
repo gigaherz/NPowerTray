@@ -24,8 +24,8 @@ Supported Languages
 
 *   English (default) by David Quintana.
 *   Spanish by David Quintana.
-*   Italian by Pietro Roberto Minali.
-*   German by Norbert Schmidt.
+*   Italian by Pietro Roberto Minali. (out of date)
+*   German by Norbert Schmidt. (out of date)
 
 Note
 ----

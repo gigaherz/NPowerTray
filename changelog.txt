@@ -1,3 +1,6 @@
+New in 1.6.1.0:
+	[*] I Left a debugging option enabled.
+	[+] Provide feedback when the manual update check is used.
 New in 1.6.0.0:
 	[+] Added a Shutdown Timer.
 	[*] Sorted all the resources by name to facilitate translations.

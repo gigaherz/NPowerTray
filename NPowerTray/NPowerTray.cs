@@ -209,16 +209,22 @@ namespace NPowerTray
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DoCheckForUpdates();
+            DoCheckForUpdates(true);
             lnCheckNow.LinkVisited = true;
         }
 
-        private static void DoCheckForUpdates()
+        private static void DoCheckForUpdates(bool isManual = false)
         {
             int[] newVersion;
 
-            if (!Updates.CheckForUpdates(out newVersion)) 
+            if (!Updates.CheckForUpdates(out newVersion))
+            {
+                if (isManual)
+                {
+                    MessageBox.Show(Resources.NoUpdates, Resources.UpdatesTitle);
+                }
                 return;
+            }
 
             if (MessageBox.Show(
                 string.Format(Resources.NewVersionMessage,
@@ -481,59 +487,12 @@ namespace NPowerTray
                         action);
                 }
             }
-            else
-            {
-                //minutesToolStripMenuItem4.Text = Resources.CustomMinutes;
-                //hoursToolStripMenuItem5.Text = Resources.CustomHours;
-            }
         }
 
         private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CancelTimer();
         }
-
-        //private void minutesToolStripMenuItem4_Enter(object sender, EventArgs e)
-        //{
-        //    int t;
-        //    if (!int.TryParse(minutesToolStripMenuItem4.Text, out t))
-        //    {
-        //        minutesToolStripMenuItem4.Text = "";
-        //    }
-        //}
-
-        //private void hoursToolStripMenuItem5_Enter(object sender, EventArgs e)
-        //{
-        //    int t;
-        //    if (!int.TryParse(hoursToolStripMenuItem5.Text, out t))
-        //    {
-        //        hoursToolStripMenuItem5.Text = "";
-        //    }
-        //}
-
-        //private void minutesToolStripMenuItem4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    int t;
-        //    e.Cancel = !int.TryParse(minutesToolStripMenuItem4.Text, out t);
-        //}
-
-        //private void hoursToolStripMenuItem5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    int t;
-        //    e.Cancel = !int.TryParse(hoursToolStripMenuItem5.Text, out t);
-        //}
-
-        //private void minutesToolStripMenuItem4_Validated(object sender, EventArgs e)
-        //{
-        //    int t = int.Parse(minutesToolStripMenuItem4.Text);
-        //    StartTimer(TimeSpan.FromMinutes(t));
-        //}
-
-        //private void hoursToolStripMenuItem5_Validated(object sender, EventArgs e)
-        //{
-        //    int t = int.Parse(minutesToolStripMenuItem4.Text);
-        //    StartTimer(TimeSpan.FromHours(t));
-        //}
 
         private void minutesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -636,58 +595,5 @@ namespace NPowerTray
                 }
             }
         }
-
-        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
-        {
-            StartTimer(TimeSpan.FromSeconds(10));
-        }
-
-        //private void minutesToolStripMenuItem4_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    if(minutesToolStripMenuItem4.Text == Resources.CustomMinutes)
-        //    {
-        //        minutesToolStripMenuItem4.Text = "";
-        //    }
-        //    if (hoursToolStripMenuItem5.Text == "")
-        //    {
-        //        hoursToolStripMenuItem5.Text = Resources.CustomHours;
-        //    }
-        //}
-
-        //private void hoursToolStripMenuItem5_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    if(hoursToolStripMenuItem5.Text == Resources.CustomHours)
-        //    {
-        //        hoursToolStripMenuItem5.Text = "";
-        //    }
-        //    if (minutesToolStripMenuItem4.Text == "")
-        //    {
-        //        minutesToolStripMenuItem4.Text = Resources.CustomMinutes;
-        //    }
-        //}
-
-        //private void minutesToolStripMenuItem4_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (e.KeyChar == 13)
-        //    {
-        //        int t;
-        //        if (int.TryParse(minutesToolStripMenuItem4.Text, out t))
-        //        {
-        //            StartTimer(TimeSpan.FromMinutes(t));
-        //        }
-        //    }
-        //}
-
-        //private void hoursToolStripMenuItem5_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (e.KeyChar == 13)
-        //    {
-        //        int t;
-        //        if (int.TryParse(hoursToolStripMenuItem5.Text, out t))
-        //        {
-        //            StartTimer(TimeSpan.FromHours(t));
-        //        }
-        //    }
-        //}
     }
 }

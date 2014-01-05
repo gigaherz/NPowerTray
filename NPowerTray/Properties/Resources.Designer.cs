@@ -488,6 +488,15 @@ namespace NPowerTray.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your version is up to date..
+        /// </summary>
+        internal static string NoUpdates {
+            get {
+                return ResourceManager.GetString("NoUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap npower {

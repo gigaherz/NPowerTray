@@ -269,6 +269,9 @@
     <value>Nueva versión disponible: {0}.
 ¿Quieres visitar la página de descarga?</value>
   </data>
+  <data name="NoUpdates" xml:space="preserve">
+    <value>Tu versión esta actualizada.</value>
+  </data>
   <data name="SecondsToAction" xml:space="preserve">
     <value>{0} segundos para {1}</value>
   </data>

@@ -1,1 +1,1 @@
-version 1.6.0.0, released 2014/01/05
+version 1.6.1.0, released 2014/01/05
