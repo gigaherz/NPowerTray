@@ -15,7 +15,7 @@ You can set the tool to run at startup from the about box.
 Source Code
 -----------
 
-The source code for the current version is available at the download link above, under a [3-clause BSD license](http://gigaherz.pcsx2.net/NPowerTray/License.html).
+The source code for the current version is available at the download link above, under a [3-clause BSD license](http://gigaherz.github.io/NPowerTray/license.html).
 
 To get the latest source, including unreleased changes, click [here](https://github.com/gigaherz/NPowerTray/archive/master.zip).
 
