@@ -53,6 +53,27 @@
             this.sleepDisableWakeUpEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceHibernateDisableWakeUpEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceSleepDisableWakeUpEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.shutdownAfterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hoursToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hoursToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hoursToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hoursToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeToShutdownMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.convertToShutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToRebootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToHibernateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToSleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separator3 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,6 +89,8 @@
             this.updateCheckTimer = new System.Windows.Forms.Timer(this.components);
             this.lbDefault = new System.Windows.Forms.Label();
             this.cbDefault = new System.Windows.Forms.ComboBox();
+            this.fastTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.trayMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
@@ -94,17 +117,21 @@
             this.changeUserToolStripMenuItem,
             this.separator2,
             this.specialOptionsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.shutdownAfterMenuItem,
+            this.timeToShutdownMenuItem,
             this.separator3,
             this.aboutToolStripMenuItem,
             this.separator4,
             this.closeTrayIconToolStripMenuItem});
             this.trayMenu.Name = "contextMenuStrip1";
-            this.trayMenu.Size = new System.Drawing.Size(175, 292);
+            this.trayMenu.Size = new System.Drawing.Size(174, 342);
+            this.trayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.trayMenu_Opening);
             // 
             // hybridShutdownToolStripMenuItem
             // 
             this.hybridShutdownToolStripMenuItem.Name = "hybridShutdownToolStripMenuItem";
-            this.hybridShutdownToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.hybridShutdownToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.hybridShutdownToolStripMenuItem.Text = "#Hybrid Shutdown";
             this.hybridShutdownToolStripMenuItem.Click += new System.EventHandler(this.hybridShutdownToolStripMenuItem_Click);
             // 
@@ -113,61 +140,61 @@
             this.shutdownToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shutdownToolStripMenuItem.Image = global::NPowerTray.Properties.Resources.npower16;
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.shutdownToolStripMenuItem.Text = "#Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // rebootToolStripMenuItem
             // 
             this.rebootToolStripMenuItem.Name = "rebootToolStripMenuItem";
-            this.rebootToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.rebootToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.rebootToolStripMenuItem.Text = "#Reboot";
             this.rebootToolStripMenuItem.Click += new System.EventHandler(this.rebootToolStripMenuItem_Click);
             // 
             // hibernateToolStripMenuItem
             // 
             this.hibernateToolStripMenuItem.Name = "hibernateToolStripMenuItem";
-            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.hibernateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.hibernateToolStripMenuItem.Text = "#Hibernate";
             this.hibernateToolStripMenuItem.Click += new System.EventHandler(this.hibernateToolStripMenuItem_Click);
             // 
             // sleepToolStripMenuItem
             // 
             this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
-            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.sleepToolStripMenuItem.Text = "#Sleep";
             this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
             // 
             // separator1
             // 
             this.separator1.Name = "separator1";
-            this.separator1.Size = new System.Drawing.Size(171, 6);
+            this.separator1.Size = new System.Drawing.Size(170, 6);
             // 
             // lockToolStripMenuItem
             // 
             this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
-            this.lockToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.lockToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.lockToolStripMenuItem.Text = "#Lock";
             this.lockToolStripMenuItem.Click += new System.EventHandler(this.lockToolStripMenuItem_Click);
             // 
             // logOffToolStripMenuItem
             // 
             this.logOffToolStripMenuItem.Name = "logOffToolStripMenuItem";
-            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.logOffToolStripMenuItem.Text = "#Log Off";
             this.logOffToolStripMenuItem.Click += new System.EventHandler(this.logOffToolStripMenuItem_Click);
             // 
             // changeUserToolStripMenuItem
             // 
             this.changeUserToolStripMenuItem.Name = "changeUserToolStripMenuItem";
-            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.changeUserToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.changeUserToolStripMenuItem.Text = "#Change User";
             this.changeUserToolStripMenuItem.Click += new System.EventHandler(this.changeUserToolStripMenuItem_Click);
             // 
             // separator2
             // 
             this.separator2.Name = "separator2";
-            this.separator2.Size = new System.Drawing.Size(171, 6);
+            this.separator2.Size = new System.Drawing.Size(170, 6);
             // 
             // specialOptionsToolStripMenuItem
             // 
@@ -183,98 +210,259 @@
             this.forceHibernateDisableWakeUpEventsToolStripMenuItem,
             this.forceSleepDisableWakeUpEventsToolStripMenuItem});
             this.specialOptionsToolStripMenuItem.Name = "specialOptionsToolStripMenuItem";
-            this.specialOptionsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.specialOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.specialOptionsToolStripMenuItem.Text = "#Special Options";
             // 
             // forceShutdownToolStripMenuItem
             // 
             this.forceShutdownToolStripMenuItem.Name = "forceShutdownToolStripMenuItem";
-            this.forceShutdownToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceShutdownToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceShutdownToolStripMenuItem.Text = "#Force Shutdown";
             this.forceShutdownToolStripMenuItem.Click += new System.EventHandler(this.forceShutdownToolStripMenuItem_Click);
             // 
             // forceRebootToolStripMenuItem
             // 
             this.forceRebootToolStripMenuItem.Name = "forceRebootToolStripMenuItem";
-            this.forceRebootToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceRebootToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceRebootToolStripMenuItem.Text = "#Force Reboot";
             this.forceRebootToolStripMenuItem.Click += new System.EventHandler(this.forceRebootToolStripMenuItem_Click);
             // 
             // forceHibernateToolStripMenuItem
             // 
             this.forceHibernateToolStripMenuItem.Name = "forceHibernateToolStripMenuItem";
-            this.forceHibernateToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceHibernateToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceHibernateToolStripMenuItem.Text = "#Force Hibernate";
             this.forceHibernateToolStripMenuItem.Click += new System.EventHandler(this.forceHibernateToolStripMenuItem_Click);
             // 
             // forceSleepToolStripMenuItem
             // 
             this.forceSleepToolStripMenuItem.Name = "forceSleepToolStripMenuItem";
-            this.forceSleepToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceSleepToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceSleepToolStripMenuItem.Text = "#Force Sleep";
             this.forceSleepToolStripMenuItem.Click += new System.EventHandler(this.forceSleepToolStripMenuItem_Click);
             // 
             // forceLogOffToolStripMenuItem
             // 
             this.forceLogOffToolStripMenuItem.Name = "forceLogOffToolStripMenuItem";
-            this.forceLogOffToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceLogOffToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceLogOffToolStripMenuItem.Text = "#Force Log Off";
             this.forceLogOffToolStripMenuItem.Click += new System.EventHandler(this.forceLogOffToolStripMenuItem_Click);
             // 
             // separator5
             // 
             this.separator5.Name = "separator5";
-            this.separator5.Size = new System.Drawing.Size(294, 6);
+            this.separator5.Size = new System.Drawing.Size(289, 6);
             // 
             // hibernateDisableWakeUpEventsToolStripMenuItem
             // 
             this.hibernateDisableWakeUpEventsToolStripMenuItem.Name = "hibernateDisableWakeUpEventsToolStripMenuItem";
-            this.hibernateDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.hibernateDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.hibernateDisableWakeUpEventsToolStripMenuItem.Text = "#Hibernate (disable WakeUp Events)";
             this.hibernateDisableWakeUpEventsToolStripMenuItem.Click += new System.EventHandler(this.hibernatedisableWakeUpEventsToolStripMenuItem_Click);
             // 
             // sleepDisableWakeUpEventsToolStripMenuItem
             // 
             this.sleepDisableWakeUpEventsToolStripMenuItem.Name = "sleepDisableWakeUpEventsToolStripMenuItem";
-            this.sleepDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.sleepDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.sleepDisableWakeUpEventsToolStripMenuItem.Text = "#Sleep (disable WakeUp Events)";
             this.sleepDisableWakeUpEventsToolStripMenuItem.Click += new System.EventHandler(this.sleepdisableWakeUpEventsToolStripMenuItem_Click);
             // 
             // forceHibernateDisableWakeUpEventsToolStripMenuItem
             // 
             this.forceHibernateDisableWakeUpEventsToolStripMenuItem.Name = "forceHibernateDisableWakeUpEventsToolStripMenuItem";
-            this.forceHibernateDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceHibernateDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceHibernateDisableWakeUpEventsToolStripMenuItem.Text = "#Force Hibernate (disable WakeUp Events)";
             this.forceHibernateDisableWakeUpEventsToolStripMenuItem.Click += new System.EventHandler(this.forceHibernatedisableWakeUpEventsToolStripMenuItem_Click);
             // 
             // forceSleepDisableWakeUpEventsToolStripMenuItem
             // 
             this.forceSleepDisableWakeUpEventsToolStripMenuItem.Name = "forceSleepDisableWakeUpEventsToolStripMenuItem";
-            this.forceSleepDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.forceSleepDisableWakeUpEventsToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.forceSleepDisableWakeUpEventsToolStripMenuItem.Text = "#Force Sleep (disable WakeUp Events)";
             this.forceSleepDisableWakeUpEventsToolStripMenuItem.Click += new System.EventHandler(this.forceSleepdisableWakeUpEventsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
+            // 
+            // shutdownAfterMenuItem
+            // 
+            this.shutdownAfterMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.minutesToolStripMenuItem,
+            this.minutesToolStripMenuItem1,
+            this.minutesToolStripMenuItem2,
+            this.minutesToolStripMenuItem3,
+            this.minutesToolStripMenuItem5,
+            this.toolStripSeparator2,
+            this.hourToolStripMenuItem,
+            this.hoursToolStripMenuItem,
+            this.hoursToolStripMenuItem1,
+            this.hoursToolStripMenuItem2,
+            this.hoursToolStripMenuItem3,
+            this.hoursToolStripMenuItem4});
+            this.shutdownAfterMenuItem.Name = "shutdownAfterMenuItem";
+            this.shutdownAfterMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.shutdownAfterMenuItem.Text = "#Shutdown after";
+            this.shutdownAfterMenuItem.Visible = false;
+            // 
+            // minutesToolStripMenuItem
+            // 
+            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
+            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem.Text = "#5 minutes";
+            this.minutesToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
+            // 
+            // minutesToolStripMenuItem1
+            // 
+            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
+            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem1.Text = "#10 minutes";
+            this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.minutesToolStripMenuItem1_Click);
+            // 
+            // minutesToolStripMenuItem2
+            // 
+            this.minutesToolStripMenuItem2.Name = "minutesToolStripMenuItem2";
+            this.minutesToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem2.Text = "#15 minutes";
+            this.minutesToolStripMenuItem2.Click += new System.EventHandler(this.minutesToolStripMenuItem2_Click);
+            // 
+            // minutesToolStripMenuItem3
+            // 
+            this.minutesToolStripMenuItem3.Name = "minutesToolStripMenuItem3";
+            this.minutesToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem3.Text = "#30 minutes";
+            this.minutesToolStripMenuItem3.Click += new System.EventHandler(this.minutesToolStripMenuItem3_Click);
+            // 
+            // minutesToolStripMenuItem5
+            // 
+            this.minutesToolStripMenuItem5.Name = "minutesToolStripMenuItem5";
+            this.minutesToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem5.Text = "#45 minutes";
+            this.minutesToolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // hourToolStripMenuItem
+            // 
+            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
+            this.hourToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hourToolStripMenuItem.Text = "#1 hour";
+            this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
+            // 
+            // hoursToolStripMenuItem
+            // 
+            this.hoursToolStripMenuItem.Name = "hoursToolStripMenuItem";
+            this.hoursToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hoursToolStripMenuItem.Text = "#2 hours";
+            this.hoursToolStripMenuItem.Click += new System.EventHandler(this.hoursToolStripMenuItem_Click);
+            // 
+            // hoursToolStripMenuItem1
+            // 
+            this.hoursToolStripMenuItem1.Name = "hoursToolStripMenuItem1";
+            this.hoursToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.hoursToolStripMenuItem1.Text = "#4 hours";
+            this.hoursToolStripMenuItem1.Click += new System.EventHandler(this.hoursToolStripMenuItem1_Click);
+            // 
+            // hoursToolStripMenuItem2
+            // 
+            this.hoursToolStripMenuItem2.Name = "hoursToolStripMenuItem2";
+            this.hoursToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.hoursToolStripMenuItem2.Text = "#8 hours";
+            this.hoursToolStripMenuItem2.Click += new System.EventHandler(this.hoursToolStripMenuItem2_Click);
+            // 
+            // hoursToolStripMenuItem3
+            // 
+            this.hoursToolStripMenuItem3.Name = "hoursToolStripMenuItem3";
+            this.hoursToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.hoursToolStripMenuItem3.Text = "#12 hours";
+            this.hoursToolStripMenuItem3.Click += new System.EventHandler(this.hoursToolStripMenuItem3_Click);
+            // 
+            // hoursToolStripMenuItem4
+            // 
+            this.hoursToolStripMenuItem4.Name = "hoursToolStripMenuItem4";
+            this.hoursToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.hoursToolStripMenuItem4.Text = "#24 hours";
+            this.hoursToolStripMenuItem4.Click += new System.EventHandler(this.hoursToolStripMenuItem4_Click);
+            // 
+            // timeToShutdownMenuItem
+            // 
+            this.timeToShutdownMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cancelToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.convertToShutdownToolStripMenuItem,
+            this.convertToRebootToolStripMenuItem,
+            this.convertToHibernateToolStripMenuItem,
+            this.convertToSleepToolStripMenuItem});
+            this.timeToShutdownMenuItem.Name = "timeToShutdownMenuItem";
+            this.timeToShutdownMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.timeToShutdownMenuItem.Text = "#time to shutdown";
+            // 
+            // cancelToolStripMenuItem
+            // 
+            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.cancelToolStripMenuItem.Text = "#Cancel";
+            this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(189, 6);
+            // 
+            // convertToShutdownToolStripMenuItem
+            // 
+            this.convertToShutdownToolStripMenuItem.Name = "convertToShutdownToolStripMenuItem";
+            this.convertToShutdownToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.convertToShutdownToolStripMenuItem.Text = "#Convert to Shutdown";
+            this.convertToShutdownToolStripMenuItem.Click += new System.EventHandler(this.convertToShutdownToolStripMenuItem_Click);
+            // 
+            // convertToRebootToolStripMenuItem
+            // 
+            this.convertToRebootToolStripMenuItem.Name = "convertToRebootToolStripMenuItem";
+            this.convertToRebootToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.convertToRebootToolStripMenuItem.Text = "#Convert to Reboot";
+            this.convertToRebootToolStripMenuItem.Click += new System.EventHandler(this.convertToRebootToolStripMenuItem_Click);
+            // 
+            // convertToHibernateToolStripMenuItem
+            // 
+            this.convertToHibernateToolStripMenuItem.Name = "convertToHibernateToolStripMenuItem";
+            this.convertToHibernateToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.convertToHibernateToolStripMenuItem.Text = "#Convert to Hibernate";
+            this.convertToHibernateToolStripMenuItem.Click += new System.EventHandler(this.convertToHibernateToolStripMenuItem_Click);
+            // 
+            // convertToSleepToolStripMenuItem
+            // 
+            this.convertToSleepToolStripMenuItem.Name = "convertToSleepToolStripMenuItem";
+            this.convertToSleepToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.convertToSleepToolStripMenuItem.Text = "#Convert to Sleep";
+            this.convertToSleepToolStripMenuItem.Click += new System.EventHandler(this.convertToSleepToolStripMenuItem_Click);
             // 
             // separator3
             // 
             this.separator3.Name = "separator3";
-            this.separator3.Size = new System.Drawing.Size(171, 6);
+            this.separator3.Size = new System.Drawing.Size(170, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.aboutToolStripMenuItem.Text = "#About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // separator4
             // 
             this.separator4.Name = "separator4";
-            this.separator4.Size = new System.Drawing.Size(171, 6);
+            this.separator4.Size = new System.Drawing.Size(170, 6);
             // 
             // closeTrayIconToolStripMenuItem
             // 
             this.closeTrayIconToolStripMenuItem.Name = "closeTrayIconToolStripMenuItem";
-            this.closeTrayIconToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.closeTrayIconToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.closeTrayIconToolStripMenuItem.Text = "#Close Tray Icon";
             this.closeTrayIconToolStripMenuItem.Click += new System.EventHandler(this.closeTrayIconToolStripMenuItem_Click);
             // 
@@ -391,6 +579,18 @@
             this.cbDefault.TabIndex = 11;
             this.cbDefault.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // fastTimer
+            // 
+            this.fastTimer.Interval = 1000;
+            this.fastTimer.Tick += new System.EventHandler(this.fastTimer_Tick);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "10 seconds";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
+            // 
             // NPowerTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,6 +666,29 @@
         private System.Windows.Forms.Label lbDefault;
         private System.Windows.Forms.ComboBox cbDefault;
         private System.Windows.Forms.ToolStripMenuItem hybridShutdownToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem shutdownAfterMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem hourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hoursToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hoursToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem hoursToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem hoursToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem hoursToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem timeToShutdownMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem convertToShutdownToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToRebootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToHibernateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToSleepToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem5;
+        private System.Windows.Forms.Timer fastTimer;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

@@ -75,6 +75,25 @@ namespace NPowerTray
             lnCheckNow.Text = Resources.CheckNow;
             lbDefault.Text = Resources.DefaultActionChoice;
 
+            minutesToolStripMenuItem.Text = Resources.MinutesToShutdown5;
+            minutesToolStripMenuItem1.Text = Resources.MinutesToShutdown10;
+            minutesToolStripMenuItem2.Text = Resources.MinutesToShutdown15;
+            minutesToolStripMenuItem3.Text = Resources.MinutesToShutdown30;
+            minutesToolStripMenuItem5.Text = Resources.MinutesToShutdown45;
+            hourToolStripMenuItem.Text = Resources.HoursToShutdown1;
+            hoursToolStripMenuItem.Text = Resources.HoursToShutdown2;
+            hoursToolStripMenuItem1.Text = Resources.HoursToShutdown4;
+            hoursToolStripMenuItem2.Text = Resources.HoursToShutdown8;
+            hoursToolStripMenuItem3.Text = Resources.HoursToShutdown12;
+            hoursToolStripMenuItem4.Text = Resources.HoursToShutdown24;
+
+            shutdownAfterMenuItem.Text = Resources.ShutdownAfter;
+            convertToShutdownToolStripMenuItem.Text = Resources.ConvertToShutdown;
+            convertToRebootToolStripMenuItem.Text = Resources.ConvertToReboot;
+            convertToHibernateToolStripMenuItem.Text = Resources.ConvertToHibernate;
+            convertToSleepToolStripMenuItem.Text = Resources.ConvertToSleep;
+            cancelToolStripMenuItem.Text = Resources.CancelTimer;
+
             cbDefault.Items.Clear();
 
             if (isWin8)
@@ -141,7 +160,7 @@ namespace NPowerTray
             if (!Visible) 
                 return;
 
-            cbStartup.Checked = PowerActions.StartupState;
+            cbStartup.Checked = Program.StartupState;
             cbCheckUpdates.Checked = Updates.CheckPeriodically;
 
             var def = (DefaultActions)Enum.Parse(typeof(DefaultActions), RegistrySettings.GetConfig(RegistrySettings.ConfigKey.DefaultAction, "Shutdown"));
@@ -174,7 +193,7 @@ namespace NPowerTray
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {   
-            PowerActions.StartupState = cbStartup.Checked;
+            Program.StartupState = cbStartup.Checked;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -217,6 +236,9 @@ namespace NPowerTray
         {
             if (Updates.AutoCheck())
                 DoCheckForUpdates();
+
+            fastTimer.Enabled = (timerMode != TimerMode.None) &&
+                                ((timerTarget - DateTime.Now).TotalSeconds < 120);
         }
 
         private void NPowerTray_Shown(object sender, EventArgs e)
@@ -387,5 +409,285 @@ namespace NPowerTray
             PowerActions.ShutdownHybrid();
         }
         #endregion
+
+        #region Timer Stuff
+        private TimerMode timerMode;
+        private DateTime timerTarget;
+        private void StartTimer(TimeSpan timeDelay)
+        {
+            timerTarget = DateTime.Now + timeDelay;
+            timerMode = TimerMode.Shutdown;
+
+            fastTimer.Enabled = (timerMode != TimerMode.None) &&
+                                ((timerTarget - DateTime.Now).TotalSeconds < 120);
+        }
+
+        private void CancelTimer()
+        {
+            timerMode = TimerMode.None;
+            fastTimer.Enabled = false;
+        }
+
+        private void trayMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            shutdownAfterMenuItem.Visible = (timerMode == TimerMode.None);
+            timeToShutdownMenuItem.Visible = (timerMode != TimerMode.None);
+
+            if (timerMode != TimerMode.None)
+            {
+                string action = "";
+                switch (timerMode)
+                {
+                    case TimerMode.Shutdown:
+                        action = Resources.ActionShutdown;
+                        break;
+                    case TimerMode.Reboot:
+                        action = Resources.ActionReboot;
+                        break;
+                    case TimerMode.Hibernate:
+                        action = Resources.ActionHibernate;
+                        break;
+                    case TimerMode.Sleep:
+                        action = Resources.ActionSleep;
+                        break;
+                }
+
+                convertToShutdownToolStripMenuItem.Visible = timerMode != TimerMode.Shutdown;
+                convertToRebootToolStripMenuItem.Visible = timerMode != TimerMode.Reboot;
+                convertToSleepToolStripMenuItem.Visible = timerMode != TimerMode.Sleep;
+                convertToHibernateToolStripMenuItem.Visible = timerMode != TimerMode.Hibernate;
+
+                var ts = timerTarget - DateTime.Now;
+
+                if (ts.TotalMinutes > 99)
+                {
+                    timeToShutdownMenuItem.Text = string.Format(
+                        Resources.HoursToAction,
+                        Math.Ceiling(ts.TotalHours),
+                        action);
+                }
+                else if (ts.TotalSeconds > 99)
+                {
+                    timeToShutdownMenuItem.Text = string.Format(
+                        Resources.MinutesToAction, 
+                        Math.Ceiling(ts.TotalMinutes),
+                        action);
+                }
+                else
+                {
+                    timeToShutdownMenuItem.Text = string.Format(
+                        Resources.SecondsToAction, 
+                        Math.Ceiling(ts.TotalSeconds),
+                        action);
+                }
+            }
+            else
+            {
+                //minutesToolStripMenuItem4.Text = Resources.CustomMinutes;
+                //hoursToolStripMenuItem5.Text = Resources.CustomHours;
+            }
+        }
+
+        private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CancelTimer();
+        }
+
+        //private void minutesToolStripMenuItem4_Enter(object sender, EventArgs e)
+        //{
+        //    int t;
+        //    if (!int.TryParse(minutesToolStripMenuItem4.Text, out t))
+        //    {
+        //        minutesToolStripMenuItem4.Text = "";
+        //    }
+        //}
+
+        //private void hoursToolStripMenuItem5_Enter(object sender, EventArgs e)
+        //{
+        //    int t;
+        //    if (!int.TryParse(hoursToolStripMenuItem5.Text, out t))
+        //    {
+        //        hoursToolStripMenuItem5.Text = "";
+        //    }
+        //}
+
+        //private void minutesToolStripMenuItem4_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    int t;
+        //    e.Cancel = !int.TryParse(minutesToolStripMenuItem4.Text, out t);
+        //}
+
+        //private void hoursToolStripMenuItem5_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+        //    int t;
+        //    e.Cancel = !int.TryParse(hoursToolStripMenuItem5.Text, out t);
+        //}
+
+        //private void minutesToolStripMenuItem4_Validated(object sender, EventArgs e)
+        //{
+        //    int t = int.Parse(minutesToolStripMenuItem4.Text);
+        //    StartTimer(TimeSpan.FromMinutes(t));
+        //}
+
+        //private void hoursToolStripMenuItem5_Validated(object sender, EventArgs e)
+        //{
+        //    int t = int.Parse(minutesToolStripMenuItem4.Text);
+        //    StartTimer(TimeSpan.FromHours(t));
+        //}
+
+        private void minutesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromMinutes(5));
+        }
+
+        private void minutesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromMinutes(10));
+        }
+
+        private void minutesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromMinutes(15));
+        }
+
+        private void minutesToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromMinutes(30));
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromMinutes(45));
+        }
+
+        private void hourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(1));
+        }
+
+        private void hoursToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(2));
+        }
+
+        private void hoursToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(4));
+        }
+
+        private void hoursToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(8));
+        }
+
+        private void hoursToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(12));
+        }
+
+        private void hoursToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromHours(24));
+        }
+
+        private void convertToShutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMode = TimerMode.Shutdown;
+        }
+
+        private void convertToRebootToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMode = TimerMode.Reboot;
+        }
+
+        private void convertToHibernateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMode = TimerMode.Hibernate;
+        }
+
+        private void convertToSleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerMode = TimerMode.Sleep;
+        }
+        #endregion
+
+        private void fastTimer_Tick(object sender, EventArgs e)
+        {
+            if (timerMode != TimerMode.None)
+            {
+                if ((timerTarget - DateTime.Now).TotalSeconds <= 0)
+                {
+                    switch (timerMode)
+                    {
+                        case TimerMode.Shutdown:
+                            shutdownToolStripMenuItem.PerformClick();
+                            break;
+                        case TimerMode.Reboot:
+                            rebootToolStripMenuItem.PerformClick();
+                            break;
+                        case TimerMode.Hibernate:
+                            hibernateToolStripMenuItem.PerformClick();
+                            break;
+                        case TimerMode.Sleep:
+                            sleepToolStripMenuItem.PerformClick();
+                            break;
+                    }
+                    CancelTimer();
+                }
+            }
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            StartTimer(TimeSpan.FromSeconds(10));
+        }
+
+        //private void minutesToolStripMenuItem4_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    if(minutesToolStripMenuItem4.Text == Resources.CustomMinutes)
+        //    {
+        //        minutesToolStripMenuItem4.Text = "";
+        //    }
+        //    if (hoursToolStripMenuItem5.Text == "")
+        //    {
+        //        hoursToolStripMenuItem5.Text = Resources.CustomHours;
+        //    }
+        //}
+
+        //private void hoursToolStripMenuItem5_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    if(hoursToolStripMenuItem5.Text == Resources.CustomHours)
+        //    {
+        //        hoursToolStripMenuItem5.Text = "";
+        //    }
+        //    if (minutesToolStripMenuItem4.Text == "")
+        //    {
+        //        minutesToolStripMenuItem4.Text = Resources.CustomMinutes;
+        //    }
+        //}
+
+        //private void minutesToolStripMenuItem4_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == 13)
+        //    {
+        //        int t;
+        //        if (int.TryParse(minutesToolStripMenuItem4.Text, out t))
+        //        {
+        //            StartTimer(TimeSpan.FromMinutes(t));
+        //        }
+        //    }
+        //}
+
+        //private void hoursToolStripMenuItem5_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (e.KeyChar == 13)
+        //    {
+        //        int t;
+        //        if (int.TryParse(hoursToolStripMenuItem5.Text, out t))
+        //        {
+        //            StartTimer(TimeSpan.FromHours(t));
+        //        }
+        //    }
+        //}
     }
 }

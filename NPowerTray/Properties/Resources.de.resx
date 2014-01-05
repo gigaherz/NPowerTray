@@ -127,27 +127,44 @@
   <data name="npower48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\npower48.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NewVersionMessage" xml:space="preserve">
-    <value>Neue Version gefunden: {0}.Zum Herunterladen die Webseite besuchen
-?</value>
+  <data name="Disclaimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\disclaimer.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="UpdatesTitle" xml:space="preserve">
-    <value>Aktualisieren</value>
+  <data name="AboutBoxTitle" xml:space="preserve">
+    <value>Über NPowerTray...</value>
   </data>
-  <data name="TrayIconTooltip" xml:space="preserve">
-    <value>NPowerTray (Doppelt Click für {0})</value>
+  <data name="ActionChangeUser" xml:space="preserve">
+    <value>Benutzer wechseln</value>
   </data>
-  <data name="ActionShutdown" xml:space="preserve">
-    <value>Ausschalten</value>
+  <data name="ActionForceHibernate" xml:space="preserve">
+    <value>Erzwinge Ruhezustand</value>
   </data>
-  <data name="ActionReboot" xml:space="preserve">
-    <value>Neu Starten</value>
+  <data name="ActionForceHibernateDisableWakeupEvents" xml:space="preserve">
+    <value>Erzwinge Ruhezustand (disable WakeUp Events)</value>
+  </data>
+  <data name="ActionForceLogOff" xml:space="preserve">
+    <value>Erzwinge Abmelden</value>
+  </data>
+  <data name="ActionForceReboot" xml:space="preserve">
+    <value>Erzwinge Neustart</value>
+  </data>
+  <data name="ActionForceShutdown" xml:space="preserve">
+    <value>Erzwinge Herunterfahren</value>
+  </data>
+  <data name="ActionForceSleep" xml:space="preserve">
+    <value>Erzwinge Energie Sparen</value>
+  </data>
+  <data name="ActionForceSleepDisableWakeupEvents" xml:space="preserve">
+    <value>Erzwinge Energie Sparen (disable WakeUp Events)</value>
   </data>
   <data name="ActionHibernate" xml:space="preserve">
     <value>Ruhezustand</value>
   </data>
-  <data name="ActionSleep" xml:space="preserve">
-    <value>Energie Sparen</value>
+  <data name="ActionHibernateDisableWakeupEvents" xml:space="preserve">
+    <value>Ruhezustand (disable WakeUp Events)</value>
+  </data>
+  <data name="ActionHybridShutdown" xml:space="preserve">
+    <value>Schnellstart-Modus</value>
   </data>
   <data name="ActionLock" xml:space="preserve">
     <value>Sperren</value>
@@ -155,56 +172,17 @@
   <data name="ActionLogOff" xml:space="preserve">
     <value>Abmelden</value>
   </data>
-  <data name="ActionChangeUser" xml:space="preserve">
-    <value> Benutzer wechseln</value>
+  <data name="ActionReboot" xml:space="preserve">
+    <value>Neu Starten</value>
   </data>
-  <data name="MenuSpecialOptions" xml:space="preserve">
-    <value>Besondere Optionen</value>
+  <data name="ActionShutdown" xml:space="preserve">
+    <value>Ausschalten</value>
   </data>
-  <data name="ActionForceShutdown" xml:space="preserve">
-    <value>Erzwinge Herunterfahren</value>
-  </data>
-  <data name="ActionForceReboot" xml:space="preserve">
-    <value>Erzwinge Neustart</value>
-  </data>
-  <data name="ActionForceHibernate" xml:space="preserve">
-    <value>Erzwinge Ruhezustand</value>
-  </data>
-  <data name="ActionForceSleep" xml:space="preserve">
-    <value>Erzwinge Energie Sparen</value>
-  </data>
-  <data name="ActionForceLogOff" xml:space="preserve">
-    <value>Erzwinge Abmelden</value>
-  </data>
-  <data name="ActionHibernateDisableWakeupEvents" xml:space="preserve">
-    <value>Ruhezustand (disable WakeUp Events)</value>
+  <data name="ActionSleep" xml:space="preserve">
+    <value>Energie Sparen</value>
   </data>
   <data name="ActionSleepDisableWakeupEvents" xml:space="preserve">
     <value>Energie Sparen (disable WakeUp Events)</value>
-  </data>
-  <data name="ActionForceHibernateDisableWakeupEvents" xml:space="preserve">
-    <value>Erzwinge Ruhezustand (disable WakeUp Events)</value>
-  </data>
-  <data name="ActionForceSleepDisableWakeupEvents" xml:space="preserve">
-    <value>Erzwinge Energie Sparen (disable WakeUp Events)</value>
-  </data>
-  <data name="ShowAbout" xml:space="preserve">
-    <value>Über...</value>
-  </data>
-  <data name="CloseTrayIcon" xml:space="preserve">
-    <value>Tray Icon beenden</value>
-  </data>
-  <data name="CopyrightNotice" xml:space="preserve">
-    <value>Copyright: © David Quintana</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Kontakt:</value>
-  </data>
-  <data name="Startup" xml:space="preserve">
-    <value>Starten mit Windows Desktop</value>
-  </data>
-  <data name="ShowLicense" xml:space="preserve">
-    <value>Lizenz Info...</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Neue Version?</value>
@@ -212,22 +190,44 @@
   <data name="CheckNow" xml:space="preserve">
     <value>Prüfe jetzt</value>
   </data>
-  <data name="DefaultActionChoice" xml:space="preserve">
-    <value>Standard-Aktion</value>
-  </data>
-  <data name="ActionHybridShutdown" xml:space="preserve">
-    <value>Schnellstart-Modus</value>
-  </data>
-  <data name="AboutBoxTitle" xml:space="preserve">
-    <value>Über NPowerTray...</value>
-  </data>
-  <data name="DisclaimerTitle" xml:space="preserve">
-    <value>Haftungsausschluss</value>
+  <data name="CloseTrayIcon" xml:space="preserve">
+    <value>Tray Icon beenden</value>
   </data>
   <data name="CloseWindow" xml:space="preserve">
     <value>Beenden</value>
   </data>
-  <data name="Disclaimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\disclaimer.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt:</value>
+  </data>
+  <data name="CopyrightNotice" xml:space="preserve">
+    <value>Copyright: © David Quintana</value>
+  </data>
+  <data name="DefaultActionChoice" xml:space="preserve">
+    <value>Standard-Aktion</value>
+  </data>
+  <data name="DisclaimerTitle" xml:space="preserve">
+    <value>Haftungsausschluss</value>
+  </data>
+  <data name="MenuSpecialOptions" xml:space="preserve">
+    <value>Besondere Optionen</value>
+  </data>
+  <data name="NewVersionMessage" xml:space="preserve">
+    <value>Neue Version gefunden: {0}.Zum Herunterladen die Webseite besuchen
+?</value>
+  </data>
+  <data name="ShowAbout" xml:space="preserve">
+    <value>Über...</value>
+  </data>
+  <data name="ShowLicense" xml:space="preserve">
+    <value>Lizenz Info...</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Starten mit Windows Desktop</value>
+  </data>
+  <data name="TrayIconTooltip" xml:space="preserve">
+    <value>NPowerTray (Doppelt Click für {0})</value>
+  </data>
+  <data name="UpdatesTitle" xml:space="preserve">
+    <value>Aktualisieren</value>
   </data>
 </root>

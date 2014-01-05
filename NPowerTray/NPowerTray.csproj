@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrySettings.cs" />
     <Compile Include="ShutdownMode.cs" />
+    <Compile Include="TimerMode.cs" />
     <Compile Include="Updates.cs" />
     <EmbeddedResource Include="Disclaimer.resx">
       <DependentUpon>Disclaimer.cs</DependentUpon>

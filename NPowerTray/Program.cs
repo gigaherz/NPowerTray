@@ -12,6 +12,47 @@ namespace NPowerTray
 
         public static readonly RegistryKey BaseKey = Registry.CurrentUser;
         public static readonly string AppKey = "SOFTWARE\\NPowerTray";
+        private const string RunKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+
+        public static bool StartupState
+        {
+            get
+            {
+                var startupKey = BaseKey.OpenSubKey(RunKey);
+
+                if (startupKey == null) return false;
+
+                var text = (string)startupKey.GetValue(Application.ProductName);
+
+                bool value = String.CompareOrdinal(text, Application.ExecutablePath) == 0;
+
+                startupKey.Close();
+
+                return value;
+            }
+            set
+            {
+                var startupKey = BaseKey.OpenSubKey(RunKey, true);
+
+                if (startupKey == null) return;
+
+                var old = (string)startupKey.GetValue(Application.ProductName);
+                var oldSame = old != null && String.CompareOrdinal(old, Application.ExecutablePath) == 0;
+
+                if (value && oldSame)
+                {
+                    startupKey.Close();
+                    return;
+                }
+
+                if (old != null)
+                    startupKey.DeleteValue(Application.ProductName, false);
+                else if (value)
+                    startupKey.SetValue(Application.ProductName, Application.ExecutablePath);
+
+                startupKey.Close();
+            }
+        }
 
         private class CustomAppContext : ApplicationContext
         {

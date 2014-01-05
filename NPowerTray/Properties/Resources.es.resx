@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="npower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\npower.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="npower16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\npower16.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="npower48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\npower48.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Disclaimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\disclaimer.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="AboutBoxTitle" xml:space="preserve">
     <value>Sobre NPowerTray...</value>
   </data>
@@ -171,6 +184,9 @@
   <data name="ActionSleepDisableWakeupEvents" xml:space="preserve">
     <value>Suspender (deshabilitar eventos)</value>
   </data>
+  <data name="CancelTimer" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Comprobar actualizaciones</value>
   </data>
@@ -186,6 +202,18 @@
   <data name="Contact" xml:space="preserve">
     <value>Contactar:</value>
   </data>
+  <data name="ConvertToHibernate" xml:space="preserve">
+    <value>Convertir en Hibernar</value>
+  </data>
+  <data name="ConvertToReboot" xml:space="preserve">
+    <value>Convertir en Reiniciar</value>
+  </data>
+  <data name="ConvertToShutdown" xml:space="preserve">
+    <value>Convertir en Apagar</value>
+  </data>
+  <data name="ConvertToSleep" xml:space="preserve">
+    <value>Convertir en Suspander</value>
+  </data>
   <data name="CopyrightNotice" xml:space="preserve">
     <value>Copyright: © David Quintana</value>
   </data>
@@ -195,18 +223,63 @@
   <data name="DisclaimerTitle" xml:space="preserve">
     <value>Licencia</value>
   </data>
+  <data name="HoursToAction" xml:space="preserve">
+    <value>{0} horas para {1}</value>
+  </data>
+  <data name="HoursToShutdown1" xml:space="preserve">
+    <value>1 hora</value>
+  </data>
+  <data name="HoursToShutdown12" xml:space="preserve">
+    <value>12 horas</value>
+  </data>
+  <data name="HoursToShutdown2" xml:space="preserve">
+    <value>2 horas</value>
+  </data>
+  <data name="HoursToShutdown24" xml:space="preserve">
+    <value>24 horas</value>
+  </data>
+  <data name="HoursToShutdown4" xml:space="preserve">
+    <value>4 horas</value>
+  </data>
+  <data name="HoursToShutdown8" xml:space="preserve">
+    <value>8 horas</value>
+  </data>
   <data name="MenuSpecialOptions" xml:space="preserve">
     <value>Opciones Especiales</value>
+  </data>
+  <data name="MinutesToAction" xml:space="preserve">
+    <value>{0} minutos para {1}</value>
+  </data>
+  <data name="MinutesToShutdown10" xml:space="preserve">
+    <value>10 minutos</value>
+  </data>
+  <data name="MinutesToShutdown15" xml:space="preserve">
+    <value>15 minutos</value>
+  </data>
+  <data name="MinutesToShutdown30" xml:space="preserve">
+    <value>30 minutos</value>
+  </data>
+  <data name="MinutesToShutdown45" xml:space="preserve">
+    <value>45 minutos</value>
+  </data>
+  <data name="MinutesToShutdown5" xml:space="preserve">
+    <value>5 minutos</value>
   </data>
   <data name="NewVersionMessage" xml:space="preserve">
     <value>Nueva versión disponible: {0}.
 ¿Quieres visitar la página de descarga?</value>
+  </data>
+  <data name="SecondsToAction" xml:space="preserve">
+    <value>{0} segundos para {1}</value>
   </data>
   <data name="ShowAbout" xml:space="preserve">
     <value>Acerca de...</value>
   </data>
   <data name="ShowLicense" xml:space="preserve">
     <value>Información de Licencia...</value>
+  </data>
+  <data name="ShutdownAfter" xml:space="preserve">
+    <value>Apagar en</value>
   </data>
   <data name="Startup" xml:space="preserve">
     <value>Iniciar con el Sistema</value>
