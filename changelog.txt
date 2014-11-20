@@ -1,3 +1,6 @@
+New in 1.6.2.0:
+	[*] Fixed crashing in case of an exception during update checks.
+	[*] Fixed version comparison method in case one version string had more components than the other.
 New in 1.6.1.0:
 	[*] I Left a debugging option enabled.
 	[+] Provide feedback when the manual update check is used.
