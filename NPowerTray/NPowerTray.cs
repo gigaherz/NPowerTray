@@ -215,7 +215,7 @@ namespace NPowerTray
 
         private static void DoCheckForUpdates(bool isManual = false)
         {
-            int[] newVersion;
+            uint[] newVersion;
 
             if (!Updates.CheckForUpdates(out newVersion))
             {

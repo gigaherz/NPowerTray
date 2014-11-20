@@ -20,7 +20,8 @@ namespace NPowerTray
             {
                 var startupKey = BaseKey.OpenSubKey(RunKey);
 
-                if (startupKey == null) return false;
+                if (startupKey == null)
+                    return false;
 
                 var text = (string)startupKey.GetValue(Application.ProductName);
 
@@ -34,7 +35,8 @@ namespace NPowerTray
             {
                 var startupKey = BaseKey.OpenSubKey(RunKey, true);
 
-                if (startupKey == null) return;
+                if (startupKey == null)
+                    return;
 
                 var old = (string)startupKey.GetValue(Application.ProductName);
                 var oldSame = old != null && String.CompareOrdinal(old, Application.ExecutablePath) == 0;
@@ -54,6 +56,9 @@ namespace NPowerTray
             }
         }
 
+        /// <summary>
+        /// Used to ensure the application closes when the main window closes.
+        /// </summary>
         private class CustomAppContext : ApplicationContext
         {
             public CustomAppContext(Form form)
@@ -76,6 +81,7 @@ namespace NPowerTray
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // The config form doubles up as the handler of the notification icon events.
             var form = new NPowerTray();
             form.Hide(); 
             

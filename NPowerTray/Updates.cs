@@ -22,84 +22,82 @@ namespace NPowerTray
             return nextCheck < currentTime;
         }
 
-        public static bool CheckForUpdates(out int[] newVersion)
+        public static bool CheckForUpdates(out uint[] newVersion)
         {
             newVersion = null;
 
-            var wr = WebRequest.Create(Program.UpdateUrl);
+            try
+            {
+                var wr = WebRequest.Create(Program.UpdateUrl);
 
-            var resp = wr.GetResponse();
-            var res = resp as HttpWebResponse;
-            if(res != null && (int)res.StatusCode >= 300)
+                var resp = wr.GetResponse();
+                var res = resp as HttpWebResponse;
+                if (res != null && (int) res.StatusCode >= 300)
+                {
+                    return false;
+                }
+
+                using (var stm = resp.GetResponseStream())
+                {
+                    if (stm != null)
+                    {
+                        var data = new StreamReader(stm);
+                        var text = data.ReadToEnd();
+
+                        var parts = text.Split(',');
+                        var values = new Dictionary<string, string>();
+                        foreach (var s in parts)
+                        {
+                            var vv = s.Trim().Split(' ');
+                            values[vv[0]] = vv[1];
+                        }
+
+                        var version = Application.ProductVersion.Split('.').Select(uint.Parse).ToArray();
+
+                        newVersion = values["version"].Split('.').Select(uint.Parse).ToArray();
+
+                        if (CompareArraysLeft(newVersion, version) > 0)
+                        {
+                            return true;
+                        }
+
+                        LastCheckUtc = DateTime.UtcNow.Date;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception)
             {
                 return false;
             }
-
-            using (var stm = resp.GetResponseStream())
-            {
-                if (stm != null)
-                {
-                    var data = new StreamReader(stm);
-                    var text = data.ReadToEnd();
-
-                    var parts = text.Split(',');
-                    var values = new Dictionary<string, string>();
-                    foreach (var s in parts)
-                    {
-                        var vv = s.Trim().Split(' ');
-                        values[vv[0]] = vv[1];
-                    }
-
-                    var version = Application.ProductVersion.Split('.').Select(int.Parse).ToArray();
-
-                    newVersion = values["version"].Split('.').Select(int.Parse).ToArray();
-
-                    if (CompareArraysLeft(newVersion, version) > 0)
-                    {
-                        return true;
-                    }
-
-                    LastCheckUtc = DateTime.UtcNow.Date;
-                }
-            }
-
-            return false;
         }
 
         /// <summary>
-        /// Compares arrays left-aligned. Extra numbers at the end of one array are compared against zero.
+        /// Compares arrays left-aligned. Extra numbers at the end of one array make the array larger.
         /// </summary>
         /// <param name="p">First array</param>
         /// <param name="q">Second array</param>
         /// <returns></returns>
-        private static int CompareArraysLeft(int[] p, int[] q)
+        private static int CompareArraysLeft(uint[] p, uint[] q)
         {
             int a = p.Length;
             int b = q.Length;
-            int c = Math.Min(a, b);
 
-            for (int i = 0; i < c; i++, a--, b--)
+            for (int i = 0; i < a && i < b; i++)
             {
-                int s = Math.Sign(p[i] - q[i]);
-                if (s != 0) return s;
+                if (p[i] > q[i])
+                    return 1;
+
+                if (p[i] < q[i])
+                    return -1;
             }
 
             if (a > b)
-            {
-                for (int i = 0; i < a; i++, a--)
-                {
-                    int s = Math.Sign(p[i]);
-                    if (s != 0) return s;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < b; i++, b--)
-                {
-                    int s = Math.Sign(q[i]);
-                    if (s != 0) return s;
-                }
-            }
+                return 1;
+
+            if (b > a)
+                return -1;
 
             return 0;
         }
