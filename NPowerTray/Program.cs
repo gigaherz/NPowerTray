@@ -7,8 +7,8 @@ namespace NPowerTray
     static class Program
     {
         public static readonly string AuthorEmail = "gigaherz@gmail.com";
-        public static readonly string ProgramUrl = "http://gigaherz.github.com/NPowerTray/#download";
-        public static readonly string UpdateUrl = "https://github.com/downloads/gigaherz/NPowerTray/version.txt";
+        public static readonly string ProgramUrl = "https://github.com/gigaherz/NPowerTray/releases/latest";
+        public static readonly string UpdateUrl = "https://raw.githubusercontent.com/gigaherz/NPowerTray/master/version.txt";
 
         public static readonly RegistryKey BaseKey = Registry.CurrentUser;
         public static readonly string AppKey = "SOFTWARE\\NPowerTray";
