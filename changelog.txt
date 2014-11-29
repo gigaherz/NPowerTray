@@ -1,3 +1,8 @@
+New in 1.6.3.0:
+    [*] Show version on the titlebar of the about box.
+    [-] Remove some inspection warnings.
+    [-] Remove old debug code.
+    [-] Remove duplicate resources from translation files.
 New in 1.6.2.1:
 	[*] Fixed download and update check URLs.
 New in 1.6.2.0:

@@ -9,9 +9,6 @@ namespace NPowerTray
         public Disclaimer()
         {
             InitializeComponent();
-
-            btnClose.Text = Resources.CloseWindow;
-            Text = Resources.DisclaimerTitle;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -21,6 +18,8 @@ namespace NPowerTray
 
         private void Disclaimer_Load(object sender, EventArgs e)
         {
+            Text = Resources.DisclaimerTitle;
+            btnClose.Text = Resources.CloseWindow;
             rtbLicense.Rtf = Resources.Disclaimer;
         }
 

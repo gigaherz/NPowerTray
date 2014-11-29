@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutBoxTitle" xml:space="preserve">
-    <value>Riguardo NPowerTray...</value>
+    <value>Riguardo NPowerTray {0} {1}...</value>
   </data>
   <data name="ActionChangeUser" xml:space="preserve">
     <value>Cambio dell'utente</value>
@@ -185,9 +185,6 @@
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contatta:</value>
-  </data>
-  <data name="CopyrightNotice" xml:space="preserve">
-    <value>Copyright: © David Quintana</value>
   </data>
   <data name="DefaultActionChoice" xml:space="preserve">
     <value>Azione predefinita</value>

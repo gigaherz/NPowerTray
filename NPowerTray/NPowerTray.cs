@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using NPowerTray.Properties;
 
@@ -111,8 +112,7 @@ namespace NPowerTray
                 });
             
             hybridShutdownToolStripMenuItem.Text = Resources.ActionHybridShutdown;
-            Text = Resources.AboutBoxTitle;
-
+            
             // ///////////////////////////////////////////////////////////////////////////////////// //
             // Sanitize settings
 
@@ -143,6 +143,9 @@ namespace NPowerTray
         #region Dialog Events
         private void NPowerTray_Load(object sender, EventArgs e)
         {
+            var assembly = Assembly.GetExecutingAssembly();
+            var versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            Text = string.Format(Resources.AboutBoxTitle, versionInfo.ProductName, versionInfo.ProductVersion);
             savedSize = Size;
         }
 
