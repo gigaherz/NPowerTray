@@ -9,8 +9,27 @@ namespace NPowerTray
 {
     internal static class PowerActions
     {
+        private static bool TryAdjustTokenPrivileges()
+        {
+            var hToken = IntPtr.Zero;
+            var tkp = new NativeMethods.TokPriv1Luid { Count = 1, Attributes = NativeMethods.SePrivilegeEnabled };
+
+            // Get a token for this process. 
+            if (!NativeMethods.OpenProcessToken(NativeMethods.GetCurrentProcess(),
+                NativeMethods.TokenAdjustPrivileges | NativeMethods.TokenQuery, ref hToken))
+                return false;
+
+            NativeMethods.LookupPrivilegeValue(null, NativeMethods.SeShutdownName, ref tkp.Luid);
+            NativeMethods.AdjustTokenPrivileges(hToken, false, ref tkp, 0, IntPtr.Zero, IntPtr.Zero);
+
+            return true;
+        }
+
         public static void Shutdown(ShutdownMode shutdownMode)
         {
+            if (!TryAdjustTokenPrivileges())
+                return;
+
             var mcWin32 = new ManagementClass("Win32_OperatingSystem");
             mcWin32.Get();
 
@@ -34,17 +53,9 @@ namespace NPowerTray
             if (osv.Platform != PlatformID.Win32NT || osv.Version < new Version(6, 2))
                 return;
 
-            var hToken = IntPtr.Zero;
-            var tkp = new NativeMethods.TokPriv1Luid { Count = 1, Attributes = NativeMethods.SePrivilegeEnabled };
-
-            // Get a token for this process. 
-
-            if (!NativeMethods.OpenProcessToken(NativeMethods.GetCurrentProcess(),
-                NativeMethods.TokenAdjustPrivileges | NativeMethods.TokenQuery, ref hToken))
+            if (!TryAdjustTokenPrivileges())
                 return;
 
-            NativeMethods.LookupPrivilegeValue(null, NativeMethods.SeShutdownName, ref tkp.Luid);
-            NativeMethods.AdjustTokenPrivileges(hToken, false, ref tkp, 0, IntPtr.Zero, IntPtr.Zero);
             NativeMethods.InitiateShutdown(null, null, 0, InitiateShutdownFlags.Hybrid | InitiateShutdownFlags.PowerOff, 0x80000000);
         }
 
